@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Christian Canilao | Data &amp; Reporting Analyst</title>
-  <meta name="description" content="Data &amp; Reporting Analyst with 5+ years in analytics and 20+ years in operations. Power BI, SQL, Google Sheets automation, dashboard development. Metro Manila[...]
+  <meta name="description" content="Data &amp; Reporting Analyst with 5+ years in analytics and 20+ years in operations. Power BI, SQL, Google Sheets automation, dashboard development. Metro Manila, Philippines." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -41,13 +41,13 @@
     /* HERO */
     .hero{background:var(--navy);min-height:100vh;display:flex;align-items:center;padding:7rem 1.5rem 5.5rem;position:relative;overflow:hidden}
     .hero-canvas{position:absolute;inset:0;pointer-events:none}
-    .hero::before{content:'';position:absolute;top:-120px;right:-80px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(45,125,210,.13) 0%,transparent 65%);pointer-[...]
-    .hero::after{content:'';position:absolute;bottom:-160px;left:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(233,160,21,.08) 0%,transparent 65%);pointe[...]
+    .hero::before{content:'';position:absolute;top:-120px;right:-80px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(45,125,210,.13) 0%,transparent 65%);pointer-events:none}
+    .hero::after{content:'';position:absolute;bottom:-160px;left:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(233,160,21,.08) 0%,transparent 65%);pointer-events:none}
     .hero-inner{max-width:1160px;margin:0 auto;width:100%;position:relative;z-index:1}
     .hero-top{display:flex;align-items:center;gap:1rem;margin-bottom:2rem}
     .hero-av{width:86px;height:86px;border-radius:50%;object-fit:cover;flex-shrink:0;box-shadow:0 0 0 3px rgba(233,160,21,.5),0 0 0 6px rgba(45,125,210,.2)}
     .hero-top-meta{display:flex;flex-direction:column;gap:.45rem}
-    .hero-avail{display:inline-flex;align-items:center;gap:.4rem;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.28);color:#34D399;font-size:.7rem;font-weight:700;letter-spacing:[...]
+    .hero-avail{display:inline-flex;align-items:center;gap:.4rem;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.28);color:#34D399;font-size:.7rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:.28rem .7rem;border-radius:100px;width:fit-content}
     .hero-avail::before{content:'';width:6px;height:6px;border-radius:50%;background:#34D399;animation:blink 1.8s ease-in-out infinite}
     @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
     .hero-loc{display:inline-flex;align-items:center;gap:.35rem;font-size:.75rem;color:rgba(255,255,255,.38)}
@@ -57,16 +57,16 @@
     .hero-role strong{color:rgba(255,255,255,.88);font-weight:600}
     .hero-pitch{font-size:clamp(.9rem,1.5vw,1rem);color:rgba(255,255,255,.4);max-width:580px;line-height:1.75;margin-bottom:2.75rem}
     .hero-actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:4.5rem}
-    .btn-primary{display:inline-flex;align-items:center;gap:.45rem;background:var(--gold);color:var(--navy);font-weight:800;font-size:.88rem;padding:.8rem 1.5rem;border-radius:var(--rs);text-decor[...]
+    .btn-primary{display:inline-flex;align-items:center;gap:.45rem;background:var(--gold);color:var(--navy);font-weight:800;font-size:.88rem;padding:.8rem 1.5rem;border-radius:var(--rs);text-decoration:none;transition:transform .15s,box-shadow .15s}
     .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(233,160,21,.45)}
-    .btn-secondary{display:inline-flex;align-items:center;gap:.45rem;background:rgba(255,255,255,.07);color:rgba(255,255,255,.7);font-weight:500;font-size:.88rem;padding:.8rem 1.5rem;border-radius[...]
+    .btn-secondary{display:inline-flex;align-items:center;gap:.45rem;background:rgba(255,255,255,.07);color:rgba(255,255,255,.7);font-weight:500;font-size:.88rem;padding:.8rem 1.5rem;border-radius:var(--rs);text-decoration:none;border:1px solid rgba(255,255,255,.15);transition:background .2s,border-color .2s,color .2s}
     .btn-secondary:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.35);color:#fff}
 
     /* KPI TILES */
     .kpi-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:.85rem}
-    .kpi-card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.09);border-radius:var(--r);padding:1.35rem 1rem 1.1rem;text-align:center;position:relative;overflow:hidden;cursor[...]
+    .kpi-card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.09);border-radius:var(--r);padding:1.35rem 1rem 1.1rem;text-align:center;position:relative;overflow:hidden;cursor:default;transition:background .22s,border-color .22s,transform .22s}
     .kpi-card:hover{background:rgba(255,255,255,.1);border-color:rgba(233,160,21,.3);transform:translateY(-2px)}
-    .kpi-bar{position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .7s cubic[...]
+    .kpi-bar{position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.4,0,.2,1)}
     .kpi-card.lit .kpi-bar{transform:scaleX(1)}
     .kpi-num{font-family:'DM Serif Display',serif;font-size:2.15rem;color:#fff;line-height:1;margin-bottom:.3rem}
     .kpi-num .hi{color:var(--gold)}
@@ -99,7 +99,7 @@
     /* SERVICES */
     .services-section{background:var(--bg)}
     .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
-    .svc-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.85rem 1.65rem;transition:box-shadow .22s,transform .22s,border-color .22s;position:relative;ov[...]
+    .svc-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.85rem 1.65rem;transition:box-shadow .22s,transform .22s,border-color .22s;position:relative;overflow:hidden}
     .svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--blue-l));opacity:0;transition:opacity .22s}
     .svc-card:hover{box-shadow:0 10px 36px rgba(45,125,210,.1);transform:translateY(-3px);border-color:rgba(45,125,210,.22)}
     .svc-card:hover::before{opacity:1}
@@ -115,7 +115,7 @@
     .gallery-section .sh{color:#fff}
     .gallery-section .sl{color:rgba(255,255,255,.42)}
     .dash-tabs{display:flex;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap}
-    .dash-tab{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.55);font-size:.8rem;font-weight:600;padding:.45rem 1rem;border-radius:6px;cursor:poin[...]
+    .dash-tab{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.55);font-size:.8rem;font-weight:600;padding:.45rem 1rem;border-radius:6px;cursor:pointer;transition:all .2s}
     .dash-tab.active,.dash-tab:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
     .dash-panel{display:none;animation:fadeIn .3s ease}
     .dash-panel.show{display:block}
@@ -131,7 +131,7 @@
     .cases-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem}
     .case-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:2rem 1.85rem;transition:box-shadow .22s,transform .22s,border-color .22s}
     .case-card:hover{box-shadow:0 10px 36px rgba(45,125,210,.09);transform:translateY(-2px);border-color:rgba(45,125,210,.2)}
-    .case-sector{display:inline-flex;align-items:center;gap:.35rem;background:var(--blue-dim);color:var(--blue);font-size:.67rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padd[...]
+    .case-sector{display:inline-flex;align-items:center;gap:.35rem;background:var(--blue-dim);color:var(--blue);font-size:.67rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.22rem .55rem;border-radius:4px;margin-bottom:1rem}
     .case-h{font-family:'DM Serif Display',serif;font-size:1.22rem;color:var(--text);margin-bottom:.65rem;line-height:1.28}
     .case-p{font-size:.84rem;color:var(--muted);line-height:1.72;margin-bottom:1.4rem}
     .case-stack{display:flex;flex-wrap:wrap;gap:.38rem;margin-bottom:1.4rem}
@@ -149,7 +149,7 @@
     .story-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:box-shadow .22s,transform .22s}
     .story-card:hover{box-shadow:0 12px 40px rgba(45,125,210,.1);transform:translateY(-3px)}
     .story-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);padding:1.5rem 1.75rem}
-    .story-tag{display:inline-block;background:rgba(233,160,21,.18);border:1px solid rgba(233,160,21,.3);color:var(--gold);font-size:.67rem;font-weight:700;letter-spacing:.09em;text-transform:upp[...]
+    .story-tag{display:inline-block;background:rgba(233,160,21,.18);border:1px solid rgba(233,160,21,.3);color:var(--gold);font-size:.67rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:.22rem .55rem;border-radius:4px;margin-bottom:.8rem}
     .story-title{font-family:'DM Serif Display',serif;font-size:1.2rem;color:#fff;line-height:1.28}
     .story-body{padding:1.6rem 1.75rem}
     .story-block{margin-bottom:1.1rem}
@@ -166,16 +166,16 @@
     /* SKILLS */
     .skills-section{background:var(--bg)}
     .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;align-items:start}
-    .sg-label{font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding-bottom:.45rem;border-bottom:2px solid var(--gold);display:inline-block;margin[...]
+    .sg-label{font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text);padding-bottom:.45rem;border-bottom:2px solid var(--gold);display:inline-block;margin-bottom:1.25rem}
     .sk-row{margin-bottom:.9rem}
     .sk-top{display:flex;justify-content:space-between;margin-bottom:.3rem}
     .sk-name{font-size:.86rem;font-weight:500;color:var(--text)}
     .sk-lv{font-size:.76rem;color:var(--muted)}
     .sk-track{height:4px;background:var(--border);border-radius:100px;overflow:hidden}
-    .sk-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--blue-l));border-radius:100px;transform:scaleX(0);transform-origin:left;transition:transform .9s cubic-bezier(.4,0,.2,1)[...]
+    .sk-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--blue-l));border-radius:100px;transform:scaleX(0);transform-origin:left;transition:transform .9s cubic-bezier(.4,0,.2,1)}
     .sk-fill.go{transform:scaleX(1)}
     .tools-wrap{display:flex;flex-wrap:wrap;gap:.5rem}
-    .tc{background:var(--card);border:1px solid var(--border);border-radius:var(--rs);padding:.38rem .72rem;font-size:.79rem;font-weight:500;color:var(--text);cursor:default;transition:border-col[...]
+    .tc{background:var(--card);border:1px solid var(--border);border-radius:var(--rs);padding:.38rem .72rem;font-size:.79rem;font-weight:500;color:var(--text);cursor:default;transition:border-color .15s,background .15s,color .15s}
     .tc:hover{border-color:var(--blue);background:var(--blue-dim);color:var(--blue)}
 
     /* EXPERIENCE */
@@ -291,135 +291,6 @@
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero" id="top">
-<div class="sec-bg" aria-hidden="true"><svg viewBox="0 0 1400 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-  <!-- Rising bar chart bottom-right -->
-  <g opacity="0.07" fill="#5BA3F5">
-    <rect x="930" y="530" width="38" height="270" rx="3"/><rect x="982" y="460" width="38" height="340" rx="3"/>
-    <rect x="1034" y="390" width="38" height="410" rx="3"/><rect x="1086" y="310" width="38" height="490" rx="3"/>
-    <rect x="1138" y="260" width="38" height="540" rx="3"/><rect x="1190" y="200" width="38" height="600" rx="3"/>
-    <rect x="1242" y="300" width="38" height="500" rx="3"/><rect x="1294" y="240" width="38" height="560" rx="3"/>
-  </g>
-  <!-- Line chart wave upper area -->
-  <polyline points="0,220 180,185 360,230 540,150 720,190 900,115 1080,158 1260,88 1400,118"
-    fill="none" stroke="#E9A015" stroke-width="2.5" opacity="0.07" stroke-dasharray="8 4"/>
-  <g opacity="0.1" fill="#E9A015">
-    <circle cx="540" cy="150" r="5"/><circle cx="900" cy="115" r="5"/><circle cx="1260" cy="88" r="5"/>
-  </g>
-  <!-- KPI card outlines, left mid -->
-  <g fill="none" stroke="rgba(255,255,255,0.055)" stroke-width="1.5">
-    <rect x="60" y="370" width="150" height="75" rx="8"/>
-    <rect x="60" y="465" width="150" height="75" rx="8"/>
-    <rect x="60" y="560" width="150" height="75" rx="8"/>
-    <line x1="80" y1="395" x2="190" y2="395"/><line x1="80" y1="490" x2="190" y2="490"/><line x1="80" y1="585" x2="190" y2="585"/>
-    <text x="80" y="420" font-size="20" font-family="serif" fill="rgba(255,255,255,0.07)" stroke="none">40%</text>
-    <text x="80" y="515" font-size="20" font-family="serif" fill="rgba(255,255,255,0.07)" stroke="none">98%</text>
-    <text x="80" y="610" font-size="20" font-family="serif" fill="rgba(255,255,255,0.07)" stroke="none">99%+</text>
-  </g>
-  <!-- Scatter dots cluster -->
-  <g opacity="0.06" fill="#5BA3F5">
-    <circle cx="720" cy="480" r="5"/><circle cx="750" cy="440" r="4"/><circle cx="790" cy="460" r="6"/>
-    <circle cx="730" cy="510" r="3"/><circle cx="770" cy="420" r="4"/><circle cx="810" cy="490" r="5"/>
-    <circle cx="760" cy="530" r="3"/><circle cx="800" cy="450" r="4"/><circle cx="840" cy="470" r="5"/>
-    <line x1="720" y1="480" x2="750" y2="440" stroke="#5BA3F5" stroke-width="1"/>
-    <line x1="750" y1="440" x2="790" y2="460" stroke="#5BA3F5" stroke-width="1"/>
-    <line x1="790" y1="460" x2="810" y2="490" stroke="#5BA3F5" stroke-width="1"/>
-  </g>
-  <!-- Floating formula text -->
-  <g font-family="'Courier New',monospace" font-size="13" fill="rgba(255,255,255,0.065)">
-    <text x="260" y="640">=QUERY(data,"SELECT * WHERE Col1 IS NOT NULL")</text>
-    <text x="260" y="670">=ARRAYFORMULA(XLOOKUP(A:A,Sheet2!A:A,Sheet2!B:B))</text>
-    <text x="260" y="700">R² = 0.982   σ = 0.024   μ = 0.76   CAGR = 12.4%</text>
-    <text x="260" y="730">=FORECAST.ETS(target,values,timeline)</text>
-    <text x="900" y="660">p-value &lt; 0.05</text>
-    <text x="900" y="695">=IMPORTRANGE()</text>
-    <text x="900" y="730">Σ KPIs / n</text>
-  </g>
-  <!-- Gauge arc top-left -->
-  <g opacity="0.06" fill="none" stroke="#E9A015" stroke-width="3" stroke-linecap="round">
-    <path d="M 90 160 A 70 70 0 0 1 230 160"/>
-    <path d="M 90 160 A 70 70 0 0 1 190 100" stroke="#5BA3F5" stroke-width="2"/>
-  </g>
-  <line x1="160" y1="160" x2="210" y2="110" stroke="rgba(255,255,255,0.06)" stroke-width="2.5" stroke-linecap="round"/>
-</svg></div>
-  <canvas class="hero-canvas" id="dotCanvas"></canvas>
-
-<div class="sd" style="opacity:.06;color:#fff;font-family:monospace;font-size:11px">
-  <div style="position:absolute;top:14%;right:1.5%;text-align:right;line-height:2.1;white-space:nowrap">
-    =QUERY(metrics,&quot;SELECT team,AVG(kpi) GROUP BY team ORDER BY AVG(kpi) DESC&quot;)<br>
-    SELECT agent_id,FCR,CSAT,AHT FROM daily_kpi WHERE score&gt;=95<br>
-    =ARRAYFORMULA(XLOOKUP(A2:A,roster!A:A,roster!E:E,&quot;&quot;,0))<br>
-    =COUNTIFS(status,&quot;Active&quot;,score,&quot;&gt;&quot;&amp;target,site,&quot;MNL&quot;)<br>
-    =IF(actual/target&gt;=1,&quot;&#9989; MET&quot;,TEXT(actual/target,&quot;0.0%&quot;))
-  </div>
-  <svg viewBox="0 0 1400 230" style="position:absolute;bottom:0;left:0;width:100%;height:200px" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="hg" x1="0" x2="0" y1="0" y2="1">
-        <stop offset="0%" stop-color="white" stop-opacity=".2"/>
-        <stop offset="100%" stop-color="white" stop-opacity=".02"/>
-      </linearGradient>
-    </defs>
-    <line x1="0" y1="55"  x2="1400" y2="55"  stroke="white" stroke-width=".8" stroke-dasharray="5,10" opacity=".5"/>
-    <line x1="0" y1="115" x2="1400" y2="115" stroke="white" stroke-width=".8" stroke-dasharray="5,10" opacity=".5"/>
-    <line x1="0" y1="175" x2="1400" y2="175" stroke="white" stroke-width=".8" stroke-dasharray="5,10" opacity=".5"/>
-    <polygon points="0,195 180,178 360,188 540,152 720,118 900,84 1080,52 1260,24 1400,8 1400,230 0,230" fill="url(#hg)"/>
-    <polyline points="0,195 180,178 360,188 540,152 720,118 900,84 1080,52 1260,24 1400,8"
-      fill="none" stroke="white" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-    <circle cx="180" cy="178" r="4" fill="none" stroke="white" stroke-width="2"/>
-    <circle cx="540" cy="152" r="4" fill="none" stroke="white" stroke-width="2"/>
-    <circle cx="900" cy="84"  r="4" fill="none" stroke="white" stroke-width="2"/>
-    <circle cx="1260" cy="24" r="4" fill="none" stroke="white" stroke-width="2"/>
-    <text x="8" y="52"  fill="white" font-size="11" font-family="monospace" opacity=".5">98%</text>
-    <text x="8" y="112" fill="white" font-size="11" font-family="monospace" opacity=".5">75%</text>
-    <text x="8" y="172" fill="white" font-size="11" font-family="monospace" opacity=".5">50%</text>
-    <text x="130"  y="222" fill="white" font-size="9" font-family="monospace" text-anchor="middle" opacity=".35">2021</text>
-    <text x="490"  y="222" fill="white" font-size="9" font-family="monospace" text-anchor="middle" opacity=".35">2022</text>
-    <text x="850"  y="222" fill="white" font-size="9" font-family="monospace" text-anchor="middle" opacity=".35">2023</text>
-    <text x="1210" y="222" fill="white" font-size="9" font-family="monospace" text-anchor="middle" opacity=".35">2024</text>
-  </svg>
-</div>
-  <div class="hero-inner">
-    <div class="hero-top">
-      <img src="assets/profile.png" alt="Christian Canilao" class="hero-av" />
-      <div class="hero-top-meta">
-        <div class="hero-avail">Open to Remote Opportunities</div>
-        <div class="hero-loc">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.[...]
-          Metro Manila, Philippines &nbsp;·&nbsp; Remote-Ready &nbsp;·&nbsp; PHT (UTC+8)
-        </div>
-      </div>
-    </div>
-
-    <h1 class="hero-name">Christian<br><em>Canilao</em></h1>
-    <p class="hero-role"><strong>Data &amp; Reporting Analyst</strong> &nbsp;·&nbsp; Process Automation &nbsp;·&nbsp; Dashboard Development</p>
-    <p class="hero-pitch">I turn operational data into reporting systems that leaders actually use. 20+ years across BPO, healthcare operations, and remote-first environments, with 5+ years focus[...]
-
-    <div class="hero-actions">
-      <a href="https://calendar.google.com/calendar/r/eventedit?add=chris.canilao23%40gmail.com&text=Meeting%20with%20Christian%20Canilao&details=Hi%20Christian%2C%20I%27d%20like%20to%20connect%2[...]
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18[...]
-        Schedule a Google Meet
-      </a>
-      <a href="mailto:chris.canilao23@gmail.com?subject=Let%27s%20Connect%20%E2%80%94%20Reporting%20Analyst%20Opportunity" class="btn-secondary">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.[...]
-        Email Me
-      </a>
-      <a href="https://www.linkedin.com/in/chris-canilao/" target="_blank" rel="noopener" class="btn-secondary">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" h[...]
-        LinkedIn
-      </a>
-    </div>
-
-    <div class="kpi-strip">
-      <div class="kpi-card" data-end="40"><div class="kpi-num"><span class="kpi-counter">0</span><span class="hi">%</span></div><div class="kpi-desc">Manual Reporting<br>Time Saved</div><div clas[...]
-      <div class="kpi-card" data-end="98"><div class="kpi-num"><span class="kpi-counter">0</span><span class="hi">%</span></div><div class="kpi-desc">Forecast Accuracy<br>Achieved</div><div class[...]
-      <div class="kpi-card" data-end="20"><div class="kpi-num"><span class="hi">+</span><span class="kpi-counter">0</span><span class="hi"> yr</span></div><div class="kpi-desc">Operations &amp;b[...]
-      <div class="kpi-card" data-end="99"><div class="kpi-num"><span class="kpi-counter">0</span><span class="hi">%</span></div><div class="kpi-desc">Data Accuracy<br>Maintained</div><div class="[...]
-      <div class="kpi-card" data-end="1000"><div class="kpi-num"><span class="kpi-counter">0</span><span class="hi">+</span></div><div class="kpi-desc">Agents Supported<br>via Reporting</div><div[...]
-    </div>
-  </div>
-</section>
-
 <!-- DASHBOARD GALLERY -->
 <section class="gallery-section" id="dashboards">
 <div class="sec-bg" aria-hidden="true"><svg viewBox="0 0 1400 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
@@ -462,61 +333,10 @@
   <!-- Gold accent line -->
   <line x1="0" y1="695" x2="1400" y2="695" stroke="rgba(233,160,21,0.08)" stroke-width="1.5"/>
 </svg></div>
-<div class="sd" style="opacity:.055">
-  <svg viewBox="0 0 500 420" style="position:absolute;top:50%;right:-20px;transform:translateY(-50%);width:min(36%,380px);height:auto" xmlns="http://www.w3.org/2000/svg">
-    <!-- KPI card 1 -->
-    <rect x="10" y="10" width="100" height="60" rx="6" fill="none" stroke="white" stroke-width="1.2"/>
-    <text x="20" y="28" font-size="7" font-family="monospace" fill="white" opacity=".5">TOTAL PRODUCTION</text>
-    <text x="20" y="52" font-size="18" font-family="sans-serif" fill="white" font-weight="700">$69.6M</text>
-    <!-- KPI card 2 -->
-    <rect x="118" y="10" width="100" height="60" rx="6" fill="none" stroke="white" stroke-width="1.2"/>
-    <text x="128" y="28" font-size="7" font-family="monospace" fill="white" opacity=".5">COLLECTION RATE</text>
-    <text x="128" y="52" font-size="18" font-family="sans-serif" fill="white" font-weight="700">91.4%</text>
-    <!-- KPI card 3 -->
-    <rect x="226" y="10" width="100" height="60" rx="6" fill="none" stroke="white" stroke-width="1.2"/>
-    <text x="236" y="28" font-size="7" font-family="monospace" fill="white" opacity=".5">TOTAL PATIENTS</text>
-    <text x="236" y="52" font-size="18" font-family="sans-serif" fill="white" font-weight="700">76K</text>
-    <!-- KPI card 4 -->
-    <rect x="334" y="10" width="100" height="60" rx="6" fill="none" stroke="white" stroke-width="1.2"/>
-    <text x="344" y="28" font-size="7" font-family="monospace" fill="white" opacity=".5">PROCEDURES</text>
-    <text x="344" y="52" font-size="18" font-family="sans-serif" fill="white" font-weight="700">723K</text>
-    <!-- Mini line chart -->
-    <rect x="10" y="80" width="230" height="130" rx="6" fill="none" stroke="white" stroke-width="1.2"/>
-    <text x="20" y="96" font-size="7" font-family="monospace" fill="white" opacity=".5">PRODUCTION BY MONTH</text>
-    <polyline points="20,190 55,175 90,182 125,158 160,140 195,120 225,108"
-      fill="none" stroke="white" stroke-width="1.5" stroke-linejoin="round" opacity=".6"/>
-    <line x1="20" y1="170" x2="230" y2="170" stroke="white" stroke-width=".5" stroke-dasharray="3,5" opacity=".3"/>
-    <line x1="20" y1="145" x2="230" y2="145" stroke="white" stroke-width=".5" stroke-dasharray="3,5" opacity=".3"/>
-    <line x1="20" y1="120" x2="230" y2="120" stroke="white" stroke-width=".5" stroke-dasharray="3,5" opacity=".3"/>
-    <!-- Donut chart -->
-    <rect x="248" y="80" width="186" height="130" rx="6" fill="none" stroke="white" stroke-width="1.2"/>
-    <text x="258" y="96" font-size="7" font-family="monospace" fill="white" opacity=".5">INSURANCE SPLIT</text>
-    <circle cx="340" cy="155" r="38" fill="none" stroke="white" stroke-width="14" stroke-dasharray="95 144" stroke-dashoffset="0" opacity=".4"/>
-    <circle cx="340" cy="155" r="38" fill="none" stroke="#E9A015" stroke-width="14" stroke-dasharray="60 144" stroke-dashoffset="-95" opacity=".4"/>
-    <circle cx="340" cy="155" r="38" fill="none" stroke="#5BA3F5" stroke-width="14" stroke-dasharray="50 144" stroke-dashoffset="-155" opacity=".4"/>
-    <!-- Mini bar chart bottom -->
-    <rect x="10" y="220" width="424" height="120" rx="6" fill="none" stroke="white" stroke-width="1.2"/>
-    <text x="20" y="236" font-size="7" font-family="monospace" fill="white" opacity=".5">PRODUCTION BY SPECIALTY</text>
-    <rect x="75"  y="248" width="195" height="12" rx="2" fill="white" opacity=".35"/>
-    <rect x="75"  y="266" width="120" height="12" rx="2" fill="white" opacity=".25"/>
-    <rect x="75"  y="284" width="90"  height="12" rx="2" fill="white" opacity=".22"/>
-    <rect x="75"  y="302" width="65"  height="12" rx="2" fill="white" opacity=".18"/>
-    <g font-size="8" font-family="monospace" fill="white" opacity=".4" text-anchor="end">
-      <text x="72" y="259">Dentist</text>
-      <text x="72" y="277">Ortho</text>
-      <text x="72" y="295">Hygienist</text>
-      <text x="72" y="313">Single Spec</text>
-    </g>
-    <text x="272" y="259" font-size="8" font-family="monospace" fill="white" opacity=".5">$49.0M</text>
-    <text x="197" y="277" font-size="8" font-family="monospace" fill="white" opacity=".5">$9.5M</text>
-    <text x="167" y="295" font-size="8" font-family="monospace" fill="white" opacity=".5">$6.9M</text>
-    <text x="142" y="313" font-size="8" font-family="monospace" fill="white" opacity=".5">$3.2M</text>
-  </svg>
-</div>
   <div class="section-inner">
     <p class="eyebrow fu">Live Work Sample</p>
     <h2 class="sh fu d1">Power BI Dashboards Built for Real Operations</h2>
-    <p class="sl fu d2">Interactive executive dashboards I built for a US-based multi-office dental practice, featuring dynamic filters, real-time KPI visibility, forecast modeling, and Key Insig[...]
+    <p class="sl fu d2">Interactive executive dashboards I built for a US-based multi-office dental practice, featuring dynamic filters, real-time KPI visibility, forecast modeling, and Key Insights generated automatically from the data.</p>
 
     <div class="dash-tabs fu d3">
       <button class="dash-tab active" onclick="showDash(this,'d-prod')">📊 Production Deep Dive</button>
@@ -588,96 +408,11 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fu').forEach(el => observer.observe(el));
 
-// KPI Counter Animation
-document.querySelectorAll('.kpi-card').forEach(card => {
-  const endValue = parseInt(card.getAttribute('data-end'));
-  const counter = card.querySelector('.kpi-counter');
-  
-  const countUp = () => {
-    let current = 0;
-    const increment = endValue / 50;
-    const interval = setInterval(() => {
-      current += increment;
-      if (current >= endValue) {
-        counter.textContent = endValue;
-        card.classList.add('lit');
-        clearInterval(interval);
-      } else {
-        counter.textContent = Math.floor(current);
-      }
-    }, 30);
-  };
-  
-  const cardObserver = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) {
-      countUp();
-      cardObserver.unobserve(card);
-    }
-  });
-  
-  cardObserver.observe(card);
-});
-
 // Scroll progress bar
 window.addEventListener('scroll', () => {
   const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
   document.getElementById('prog').style.width = scrollPercentage + '%';
 });
-
-// Skill bars animation
-document.querySelectorAll('.sk-fill').forEach(fill => {
-  const observer = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) {
-      fill.classList.add('go');
-    }
-  });
-  observer.observe(fill);
-});
-
-// Active nav link
-window.addEventListener('scroll', () => {
-  const sections = document.querySelectorAll('section[id]');
-  const scrollPosition = window.scrollY + 100;
-  
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.offsetHeight;
-    
-    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-      document.querySelectorAll('.nav-links a').forEach(link => {
-        link.classList.remove('active');
-      });
-      const activeLink = document.querySelector(`.nav-links a[href="#${section.id}"]`);
-      if (activeLink) activeLink.classList.add('active');
-    }
-  });
-});
-
-// Dot canvas background (hero section)
-const canvas = document.getElementById('dotCanvas');
-const ctx = canvas.getContext('2d');
-
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  drawDots();
-}
-
-function drawDots() {
-  ctx.fillStyle = 'rgba(233, 160, 21, 0.04)';
-  const dotSpacing = 80;
-  
-  for (let x = 0; x < canvas.width; x += dotSpacing) {
-    for (let y = 0; y < canvas.height / 2; y += dotSpacing) {
-      ctx.beginPath();
-      ctx.arc(x, y, 2, 0, Math.PI * 2);
-      ctx.fill();
-    }
-  }
-}
-
-resizeCanvas();
-window.addEventListener('resize', resizeCanvas);
 </script>
 </body>
 </html>
