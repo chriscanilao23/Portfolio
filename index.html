@@ -291,6 +291,379 @@
   </div>
 </nav>
 
+<!-- HERO -->
+<section class="hero" id="top">
+<div class="sec-bg" aria-hidden="true"><svg viewBox="0 0 1400 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <!-- Rising bar chart bottom-right -->
+  <g opacity="0.07" fill="#5BA3F5">
+    <rect x="930" y="530" width="38" height="270" rx="3"/><rect x="982" y="460" width="38" height="340" rx="3"/>
+    <rect x="1034" y="390" width="38" height="410" rx="3"/><rect x="1086" y="310" width="38" height="490" rx="3"/>
+    <rect x="1138" y="260" width="38" height="540" rx="3"/><rect x="1190" y="200" width="38" height="600" rx="3"/>
+    <rect x="1242" y="300" width="38" height="500" rx="3"/><rect x="1294" y="240" width="38" height="560" rx="3"/>
+  </g>
+  <!-- Line chart wave upper area -->
+  <polyline points="0,220 180,185 360,230 540,150 720,190 900,115 1080,158 1260,88 1400,118"
+    fill="none" stroke="#E9A015" stroke-width="2.5" opacity="0.07" stroke-dasharray="8 4"/>
+  <g opacity="0.1" fill="#E9A015">
+    <circle cx="540" cy="150" r="5"/><circle cx="900" cy="115" r="5"/><circle cx="1260" cy="88" r="5"/>
+  </g>
+  <!-- KPI card outlines, left mid -->
+  <g fill="none" stroke="rgba(255,255,255,0.055)" stroke-width="1.5">
+    <rect x="60" y="370" width="150" height="75" rx="8"/>
+    <rect x="60" y="465" width="150" height="75" rx="8"/>
+    <rect x="60" y="560" width="150" height="75" rx="8"/>
+    <line x1="80" y1="395" x2="190" y2="395"/><line x1="80" y1="490" x2="190" y2="490"/><line x1="80" y1="585" x2="190" y2="585"/>
+    <text x="80" y="420" font-size="20" font-family="serif" fill="rgba(255,255,255,0.07)" stroke="none">40%</text>
+    <text x="80" y="515" font-size="20" font-family="serif" fill="rgba(255,255,255,0.07)" stroke="none">98%</text>
+    <text x="80" y="610" font-size="20" font-family="serif" fill="rgba(255,255,255,0.07)" stroke="none">99%+</text>
+  </g>
+  <!-- Scatter dots cluster -->
+  <g opacity="0.06" fill="#5BA3F5">
+    <circle cx="720" cy="480" r="5"/><circle cx="750" cy="440" r="4"/><circle cx="790" cy="460" r="6"/>
+    <circle cx="730" cy="510" r="3"/><circle cx="770" cy="420" r="4"/><circle cx="810" cy="490" r="5"/>
+    <circle cx="760" cy="530" r="3"/><circle cx="800" cy="450" r="4"/><circle cx="840" cy="470" r="5"/>
+    <line x1="720" y1="480" x2="750" y2="440" stroke="#5BA3F5" stroke-width="1"/>
+    <line x1="750" y1="440" x2="790" y2="460" stroke="#5BA3F5" stroke-width="1"/>
+    <line x1="790" y1="460" x2="810" y2="490" stroke="#5BA3F5" stroke-width="1"/>
+  </g>
+  <!-- Floating formula text -->
+  <g font-family="'Courier New',monospace" font-size="13" fill="rgba(255,255,255,0.065)">
+    <text x="260" y="640">=QUERY(data,"SELECT * WHERE Col1 IS NOT NULL")</text>
+    <text x="260" y="670">=ARRAYFORMULA(XLOOKUP(A:A,Sheet2!A:A,Sheet2!B:B))</text>
+    <text x="260" y="700">R² = 0.982   σ = 0.024   μ = 0.76   CAGR = 12.4%</text>
+    <text x="260" y="730">=FORECAST.ETS(target,values,timeline)</text>
+    <text x="900" y="660">p-value &lt; 0.05</text>
+    <text x="900" y="695">=IMPORTRANGE()</text>
+    <text x="900" y="730">Σ KPIs / n</text>
+  </g>
+  <!-- Gauge arc top-left -->
+  <g opacity="0.06" fill="none" stroke="#E9A015" stroke-width="3" stroke-linecap="round">
+    <path d="M 90 160 A 70 70 0 0 1 230 160"/>
+    <path d="M 90 160 A 70 70 0 0 1 190 100" stroke="#5BA3F5" stroke-width="2"/>
+  </g>
+  <line x1="160" y1="160" x2="210" y2="110" stroke="rgba(255,255,255,0.06)" stroke-width="2.5" stroke-linecap="round"/>
+</svg></div>
+  <canvas class="hero-canvas" id="dotCanvas"></canvas>
+
+<div class="sd" style="opacity:.06;color:#fff;font-family:monospace;font-size:11px">
+  <div style="position:absolute;top:14%;right:1.5%;text-align:right;line-height:2.1;white-space:nowrap">
+    =QUERY(metrics,&quot;SELECT team,AVG(kpi) GROUP BY team ORDER BY AVG(kpi) DESC&quot;)<br>
+    SELECT agent_id,FCR,CSAT,AHT FROM daily_kpi WHERE score&gt;=95<br>
+    =ARRAYFORMULA(XLOOKUP(A2:A,roster!A:A,roster!E:E,&quot;&quot;,0))<br>
+    =COUNTIFS(status,&quot;Active&quot;,score,&quot;&gt;&quot;&amp;target,site,&quot;MNL&quot;)<br>
+    =IF(actual/target&gt;=1,&quot;&#9989; MET&quot;,TEXT(actual/target,&quot;0.0%&quot;))
+  </div>
+  <svg viewBox="0 0 1400 230" style="position:absolute;bottom:0;left:0;width:100%;height:200px" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="hg" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0%" stop-color="white" stop-opacity=".2"/>
+        <stop offset="100%" stop-color="white" stop-opacity=".02"/>
+      </linearGradient>
+    </defs>
+    <line x1="0" y1="55"  x2="1400" y2="55"  stroke="white" stroke-width=".8" stroke-dasharray="5,10" opacity=".5"/>
+    <line x1="0" y1="115" x2="1400" y2="115" stroke="white" stroke-width=".8" stroke-dasharray="5,10" opacity=".5"/>
+    <line x1="0" y1="175" x2="1400" y2="175" stroke="white" stroke-width=".8" stroke-dasharray="5,10" opacity=".5"/>
+    <polygon points="0,195 180,178 360,188 540,152 720,118 900,84 1080,52 1260,24 1400,8 1400,230 0,230" fill="url(#hg)"/>
+    <polyline points="0,195 180,178 360,188 540,152 720,118 900,84 1080,52 1260,24 1400,8"
+      fill="none" stroke="white" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="180" cy="178" r="4" fill="none" stroke="white" stroke-width="2"/>
+    <circle cx="540" cy="152" r="4" fill="none" stroke="white" stroke-width="2"/>
+    <circle cx="900" cy="84"  r="4" fill="none" stroke="white" stroke-width="2"/>
+    <circle cx="1260" cy="24" r="4" fill="none" stroke="white" stroke-width="2"/>
+    <text x="8" y="52"  fill="white" font-size="11" font-family="monospace" opacity=".5">98%</text>
+    <text x="8" y="112" fill="white" font-size="11" font-family="monospace" opacity=".5">75%</text>
+    <text x="8" y="172" fill="white" font-size="11" font-family="monospace" opacity=".5">50%</text>
+    <text x="130"  y="222" fill="white" font-size="9" font-family="monospace" text-anchor="middle" opacity=".35">2021</text>
+    <text x="490"  y="222" fill="white" font-size="9" font-family="monospace" text-anchor="middle" opacity=".35">2022</text>
+    <text x="850"  y="222" fill="white" font-size="9" font-family="monospace" text-anchor="middle" opacity=".35">2023</text>
+    <text x="1210" y="222" fill="white" font-size="9" font-family="monospace" text-anchor="middle" opacity=".35">2024</text>
+  </svg>
+</div>
+  <div class="hero-inner">
+    <div class="hero-top">
+      <img src="assets/profile.png" alt="Christian Canilao" class="hero-av" />
+      <div class="hero-top-meta">
+        <div class="hero-avail">Open to Remote Opportunities</div>
+        <div class="hero-loc">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          Metro Manila, Philippines &nbsp;·&nbsp; Remote-Ready &nbsp;·&nbsp; PHT (UTC+8)
+        </div>
+      </div>
+    </div>
+
+    <h1 class="hero-name">Christian<br><em>Canilao</em></h1>
+    <p class="hero-role"><strong>Data &amp; Reporting Analyst</strong> &nbsp;·&nbsp; Process Automation &nbsp;·&nbsp; Dashboard Development</p>
+    <p class="hero-pitch">I turn operational data into reporting systems that leaders actually use. 20+ years across BPO, healthcare operations, and remote-first environments, with 5+ years focused entirely on analytics, automation, and making data trustworthy.</p>
+
+    <div class="hero-actions">
+      <a href="https://calendar.google.com/calendar/r/eventedit?add=chris.canilao23%40gmail.com&text=Meeting%20with%20Christian%20Canilao&details=Hi%20Christian%2C%20I%27d%20like%20to%20connect%20via%20Google%20Meet." target="_blank" rel="noopener" class="btn-primary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Schedule a Google Meet
+      </a>
+      <a href="mailto:chris.canilao23@gmail.com?subject=Let%27s%20Connect%20%E2%80%94%20Reporting%20Analyst%20Opportunity" class="btn-secondary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Email Me
+      </a>
+      <a href="https://www.linkedin.com/in/chris-canilao/" target="_blank" rel="noopener" class="btn-secondary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+    </div>
+
+    <div class="kpi-strip">
+      <div class="kpi-card" data-end="40"><div class="kpi-num"><span class="kpi-counter">0</span><span class="hi">%</span></div><div class="kpi-desc">Manual Reporting<br>Time Saved</div><div class="kpi-bar"></div></div>
+      <div class="kpi-card" data-end="98"><div class="kpi-num"><span class="kpi-counter">0</span><span class="hi">%</span></div><div class="kpi-desc">Forecast Accuracy<br>Achieved</div><div class="kpi-bar"></div></div>
+      <div class="kpi-card" data-end="20"><div class="kpi-num"><span class="hi">+</span><span class="kpi-counter">0</span><span class="hi"> yr</span></div><div class="kpi-desc">Operations &amp;<br>Analytics Experience</div><div class="kpi-bar"></div></div>
+      <div class="kpi-card" data-end="99"><div class="kpi-num"><span class="kpi-counter">0</span><span class="hi">%</span></div><div class="kpi-desc">Data Accuracy<br>Maintained</div><div class="kpi-bar"></div></div>
+      <div class="kpi-card" data-end="1000"><div class="kpi-num"><span class="kpi-counter">0</span><span class="hi">+</span></div><div class="kpi-desc">Agents Supported<br>via Reporting</div><div class="kpi-bar"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+<div class="sec-bg" aria-hidden="true"><svg viewBox="0 0 1400 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <!-- Spreadsheet grid top-right -->
+  <g opacity="0.045" stroke="#2D7DD2" stroke-width="1" fill="none">
+    <rect x="850" y="30" width="520" height="320" rx="4"/>
+    <!-- columns -->
+    <line x1="955" y1="30" x2="955" y2="350"/><line x1="1060" y1="30" x2="1060" y2="350"/>
+    <line x1="1165" y1="30" x2="1165" y2="350"/><line x1="1270" y1="30" x2="1270" y2="350"/>
+    <!-- rows -->
+    <line x1="850" y1="90" x2="1370" y2="90"/><line x1="850" y1="150" x2="1370" y2="150"/>
+    <line x1="850" y1="210" x2="1370" y2="210"/><line x1="850" y1="270" x2="1370" y2="270"/>
+    <line x1="850" y1="330" x2="1370" y2="330"/>
+    <!-- header fill -->
+    <rect x="850" y="30" width="520" height="60" rx="4" fill="#2D7DD2" opacity="0.4"/>
+  </g>
+  <!-- Donut chart bottom-left -->
+  <g opacity="0.05">
+    <circle cx="130" cy="480" r="90" fill="none" stroke="#2D7DD2" stroke-width="30"/>
+    <path d="M 130 390 A 90 90 0 0 1 218 480" fill="none" stroke="#E9A015" stroke-width="30"/>
+    <circle cx="130" cy="480" r="55" fill="white" opacity="0.9"/>
+    <text x="108" y="487" font-family="sans-serif" font-size="14" fill="#2D7DD2" opacity="0.8">91.4%</text>
+  </g>
+  <!-- Cell reference formulas -->
+  <g font-family="'Courier New',monospace" font-size="12" fill="rgba(45,125,210,0.08)">
+    <text x="860" y="75">  Date        Office       Production    Collection   Rate</text>
+    <text x="860" y="135">  2024-01     Canarsie     $18.8M        $18.9M       91.4%</text>
+    <text x="860" y="195">  2024-02     Avenue D     $13.8M        $13.3M       87.0%</text>
+    <text x="860" y="255">  2024-03     Lincoln      $12.7M        $11.8M       79.5%</text>
+    <text x="860" y="315">  2024-04     Flatlands    $11.6M        $11.3M       74.0%</text>
+  </g>
+  <!-- Scatter plot center area -->
+  <g opacity="0.05" fill="#2D7DD2">
+    <circle cx="400" cy="480" r="4"/><circle cx="440" cy="455" r="5"/><circle cx="480" cy="465" r="3"/>
+    <circle cx="510" cy="440" r="4"/><circle cx="540" cy="420" r="5"/><circle cx="570" cy="435" r="3"/>
+    <circle cx="600" cy="408" r="4"/><circle cx="630" cy="395" r="5"/><circle cx="660" cy="410" r="3"/>
+  </g>
+  <line x1="390" y1="492" x2="670" y2="388" stroke="rgba(45,125,210,0.05)" stroke-width="2" stroke-dasharray="6 4"/>
+  <!-- Formula text left side -->
+  <g font-family="'Courier New',monospace" font-size="12" fill="rgba(45,125,210,0.07)">
+    <text x="30" y="60">=XLOOKUP(A2,PatientID,Revenue)</text>
+    <text x="30" y="95">=ARRAYFORMULA(IFERROR(B:B/C:C,0))</text>
+    <text x="30" y="130">=QUERY(A:F,"SELECT A,SUM(D)")</text>
+    <text x="30" y="165">=IMPORTRANGE(spreadsheet_url,range)</text>
+    <text x="30" y="200">=FORECAST.LINEAR(x,known_y,known_x)</text>
+  </g>
+</svg></div>
+<div class="sd" style="opacity:.05">
+  <svg viewBox="0 0 540 360" style="position:absolute;top:-5px;right:-5px;width:min(44%,480px);height:auto" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="540" height="360" fill="#EEF3F9"/>
+    <!-- Formula bar -->
+    <rect x="0" y="0" width="540" height="25" fill="#DDE5EF"/>
+    <text x="6" y="17" font-size="10" font-family="monospace" fill="#192840">fx  =ARRAYFORMULA(IF(C2:C8&gt;D2:D8, "MET", TEXT(C2:C8/D2:D8,"0%")))</text>
+    <!-- Column header row -->
+    <rect x="0" y="25" width="540" height="22" fill="#DDE5EF"/>
+    <text x="22"  y="40" font-size="10" font-family="monospace" fill="#192840" text-anchor="middle" font-weight="700">A</text>
+    <text x="100" y="40" font-size="10" font-family="monospace" fill="#192840" text-anchor="middle" font-weight="700">B</text>
+    <text x="190" y="40" font-size="10" font-family="monospace" fill="#192840" text-anchor="middle" font-weight="700">C</text>
+    <text x="280" y="40" font-size="10" font-family="monospace" fill="#192840" text-anchor="middle" font-weight="700">D</text>
+    <text x="390" y="40" font-size="10" font-family="monospace" fill="#192840" text-anchor="middle" font-weight="700">E</text>
+    <text x="490" y="40" font-size="10" font-family="monospace" fill="#192840" text-anchor="middle" font-weight="700">F</text>
+    <!-- Row number column -->
+    <rect x="0" y="47" width="14" height="313" fill="#DDE5EF"/>
+    <!-- Header row -->
+    <rect x="14" y="47" width="526" height="23" fill="#2D7DD2" opacity=".2"/>
+    <text x="18"  y="62" font-size="9" font-family="monospace" fill="#192840" font-weight="700">Month</text>
+    <text x="78"  y="62" font-size="9" font-family="monospace" fill="#192840" font-weight="700">Metric</text>
+    <text x="166" y="62" font-size="9" font-family="monospace" fill="#192840" font-weight="700">Actual</text>
+    <text x="255" y="62" font-size="9" font-family="monospace" fill="#192840" font-weight="700">Target</text>
+    <text x="360" y="62" font-size="9" font-family="monospace" fill="#192840" font-weight="700">Variance</text>
+    <text x="466" y="62" font-size="9" font-family="monospace" fill="#192840" font-weight="700">Status</text>
+    <!-- Data rows -->
+    <g font-size="9" font-family="monospace" fill="#192840">
+      <text x="5"  y="85" fill="#6B7F9E" font-size="8">2</text><text x="18" y="85">Jan 2024</text><text x="78" y="85">CSAT</text>  <text x="166" y="85">95.2%</text><text x="255" y="85">92.0%</text><text x="360" y="85">+3.2%</text><text x="466" y="85" fill="#16A34A">✓ MET</text>
+      <text x="5"  y="108" fill="#6B7F9E" font-size="8">3</text><text x="18" y="108">Feb 2024</text><text x="78" y="108">FCR</text>   <text x="166" y="108">87.5%</text><text x="255" y="108">85.0%</text><text x="360" y="108">+2.5%</text><text x="466" y="108" fill="#16A34A">✓ MET</text>
+      <text x="5"  y="131" fill="#6B7F9E" font-size="8">4</text><text x="18" y="131">Mar 2024</text><text x="78" y="131">AHT</text>   <text x="166" y="131">4:32</text>  <text x="255" y="131">5:00</text>  <text x="360" y="131">-0:28</text> <text x="466" y="131" fill="#16A34A">✓ MET</text>
+      <text x="5"  y="154" fill="#6B7F9E" font-size="8">5</text><text x="18" y="154">Apr 2024</text><text x="78" y="154">NPS</text>   <text x="166" y="154">72</text>    <text x="255" y="154">65</text>    <text x="360" y="154">+7</text>    <text x="466" y="154" fill="#16A34A">✓ MET</text>
+      <text x="5"  y="177" fill="#6B7F9E" font-size="8">6</text><text x="18" y="177">May 2024</text><text x="78" y="177">CSAT</text>  <text x="166" y="177">94.8%</text><text x="255" y="177">92.0%</text><text x="360" y="177">+2.8%</text><text x="466" y="177" fill="#16A34A">✓ MET</text>
+      <text x="5"  y="200" fill="#6B7F9E" font-size="8">7</text><text x="18" y="200">Jun 2024</text><text x="78" y="200">FCR</text>   <text x="166" y="200">86.1%</text><text x="255" y="200">85.0%</text><text x="360" y="200">+1.1%</text><text x="466" y="200" fill="#16A34A">✓ MET</text>
+      <text x="5"  y="223" fill="#6B7F9E" font-size="8">8</text><text x="18" y="223">Jul 2024</text> <text x="78" y="223">Forecast</text><text x="166" y="223">98.1%</text><text x="255" y="223">95.0%</text><text x="360" y="223">+3.1%</text><text x="466" y="223" fill="#16A34A">✓ MET</text>
+      <text x="5"  y="246" fill="#6B7F9E" font-size="8">9</text><text x="18" y="246">Aug 2024</text><text x="78" y="246">AHT</text>   <text x="166" y="246">4:41</text>  <text x="255" y="246">5:00</text>  <text x="360" y="246">-0:19</text> <text x="466" y="246" fill="#16A34A">✓ MET</text>
+    </g>
+    <!-- Horizontal grid lines -->
+    <g stroke="#192840" stroke-width=".5" opacity=".2">
+      <line x1="0" y1="47"  x2="540" y2="47"/>
+      <line x1="0" y1="70"  x2="540" y2="70"/>
+      <line x1="0" y1="93"  x2="540" y2="93"/>
+      <line x1="0" y1="116" x2="540" y2="116"/>
+      <line x1="0" y1="139" x2="540" y2="139"/>
+      <line x1="0" y1="162" x2="540" y2="162"/>
+      <line x1="0" y1="185" x2="540" y2="185"/>
+      <line x1="0" y1="208" x2="540" y2="208"/>
+      <line x1="0" y1="231" x2="540" y2="231"/>
+      <line x1="0" y1="254" x2="540" y2="254"/>
+    </g>
+    <!-- Vertical grid lines -->
+    <g stroke="#192840" stroke-width=".5" opacity=".2">
+      <line x1="14"  y1="25" x2="14"  y2="360"/>
+      <line x1="70"  y1="25" x2="70"  y2="360"/>
+      <line x1="148" y1="25" x2="148" y2="360"/>
+      <line x1="238" y1="25" x2="238" y2="360"/>
+      <line x1="330" y1="25" x2="330" y2="360"/>
+      <line x1="440" y1="25" x2="440" y2="360"/>
+    </g>
+    <rect x="0" y="0" width="540" height="360" fill="none" stroke="#192840" stroke-width="1" opacity=".15"/>
+  </svg>
+</div>
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-body fu">
+        <p class="eyebrow">About Me</p>
+        <h2 class="sh">The analyst who<br>started on the floor</h2>
+        <p>I spent over a decade managing contact center operations, teams of 60+ agents, site rankings, SLA dashboards, performance reviews, before making a deliberate move into full-time data and reporting work. That background isn't a footnote. <strong>I know what ops leaders need to see</strong>, because I was the one asking for it.</p>
+        <p>Since January 2021, I've been building reporting systems that automate the manual, surface the meaningful, and hold up at 99%+ accuracy under daily production pressure. Today I work remotely as a <strong>Cross-Functional Operations Data Analyst</strong> for a New York-based dental practice, designing automated Google Sheets pipelines, building multi-source dashboards, and writing governance logic that keeps data clean without someone babysitting it every morning.</p>
+        <p>I'm currently open to full-time remote roles in reporting analytics, BI, or operations data, anywhere that values outcome-driven execution and wants someone who builds for the long run, not just the deadline.</p>
+      </div>
+      <div class="about-sidebar fu d2">
+        <div class="about-hl">
+          <div class="ah-title">Quick Snapshot</div>
+          <div class="ah-item"><div class="ah-dot"></div><span><strong>Location:</strong> Metro Manila, Philippines · Remote-First</span></div>
+          <div class="ah-item"><div class="ah-dot"></div><span><strong>Analytics experience:</strong> 5+ years full-time analytics</span></div>
+          <div class="ah-item"><div class="ah-dot"></div><span><strong>Operations background:</strong> 20+ years total career</span></div>
+          <div class="ah-item"><div class="ah-dot"></div><span><strong>Current role:</strong> Data Analyst, New York Family Dentistry (Jun 2025–Present)</span></div>
+          <div class="ah-item"><div class="ah-dot"></div><span><strong>Core stack:</strong> Excel, Power BI, Google Sheets, SQL, Apps Script</span></div>
+          <div class="ah-item"><div class="ah-dot"></div><span><strong>Domains:</strong> BPO / CX, Healthcare-Adjacent, Remote Operations</span></div>
+          <div class="ah-item"><div class="ah-dot"></div><span><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/chris-canilao/" target="_blank" rel="noopener" style="color:var(--blue);font-weight:500;text-decoration:none">linkedin.com/in/chris-canilao</a></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+<div class="sec-bg" aria-hidden="true"><svg viewBox="0 0 1400 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dashboard wireframe right side -->
+  <g opacity="0.05" fill="none" stroke="#2D7DD2" stroke-width="1.5">
+    <!-- Main card -->
+    <rect x="950" y="80" width="400" height="260" rx="10"/>
+    <!-- KPI row inside -->
+    <rect x="970" y="100" width="80" height="50" rx="5"/><rect x="1065" y="100" width="80" height="50" rx="5"/>
+    <rect x="1160" y="100" width="80" height="50" rx="5"/><rect x="1255" y="100" width="80" height="50" rx="5"/>
+    <!-- Mini bar chart inside -->
+    <rect x="970" y="170" width="18" height="60" rx="2"/><rect x="995" y="145" width="18" height="85" rx="2"/>
+    <rect x="1020" y="130" width="18" height="100" rx="2"/><rect x="1045" y="155" width="18" height="75" rx="2"/>
+    <rect x="1070" y="120" width="18" height="110" rx="2"/>
+    <!-- Mini line chart inside -->
+    <polyline points="1140,230 1175,210 1210,220 1245,190 1280,200 1315,175 1330,185" stroke-width="2"/>
+    <!-- Second card -->
+    <rect x="950" y="360" width="190" height="140" rx="10"/>
+    <path d="M 1045 430 A 60 60 0 0 1 985 430" stroke-width="8" stroke-linecap="round"/>
+    <path d="M 1045 430 A 60 60 0 0 1 1020 380" stroke="#E9A015" stroke-width="8" stroke-linecap="round" opacity="0.6"/>
+    <!-- Third card -->
+    <rect x="1160" y="360" width="190" height="140" rx="10"/>
+    <polyline points="1175,460 1200,430 1225,445 1250,415 1275,425 1300,400 1340,410"/>
+  </g>
+  <!-- Dot grid left background -->
+  <g opacity="0.04" fill="#2D7DD2">
+    <circle cx="60" cy="100" r="3"/><circle cx="120" cy="100" r="3"/><circle cx="180" cy="100" r="3"/><circle cx="240" cy="100" r="3"/>
+    <circle cx="60" cy="160" r="3"/><circle cx="120" cy="160" r="3"/><circle cx="180" cy="160" r="3"/><circle cx="240" cy="160" r="3"/>
+    <circle cx="60" cy="220" r="3"/><circle cx="120" cy="220" r="3"/><circle cx="180" cy="220" r="3"/><circle cx="240" cy="220" r="3"/>
+    <circle cx="60" cy="280" r="3"/><circle cx="120" cy="280" r="3"/><circle cx="180" cy="280" r="3"/><circle cx="240" cy="280" r="3"/>
+    <circle cx="60" cy="340" r="3"/><circle cx="120" cy="340" r="3"/><circle cx="180" cy="340" r="3"/><circle cx="240" cy="340" r="3"/>
+    <circle cx="60" cy="400" r="3"/><circle cx="120" cy="400" r="3"/><circle cx="180" cy="400" r="3"/><circle cx="240" cy="400" r="3"/>
+    <circle cx="60" cy="460" r="3"/><circle cx="120" cy="460" r="3"/><circle cx="180" cy="460" r="3"/><circle cx="240" cy="460" r="3"/>
+    <circle cx="60" cy="520" r="3"/><circle cx="120" cy="520" r="3"/><circle cx="180" cy="520" r="3"/><circle cx="240" cy="520" r="3"/>
+    <circle cx="60" cy="580" r="3"/><circle cx="120" cy="580" r="3"/><circle cx="180" cy="580" r="3"/><circle cx="240" cy="580" r="3"/>
+  </g>
+  <!-- Sparkline sparkles across center bottom -->
+  <g opacity="0.05" fill="none" stroke="#2D7DD2" stroke-width="1.5">
+    <polyline points="350,600 380,575 410,588 440,560 470,572 500,545 530,558"/>
+    <polyline points="600,610 630,580 660,595 690,565 720,578 750,550 780,562"/>
+  </g>
+  <!-- Large faint % symbols -->
+  <g font-family="serif" font-size="160" fill="rgba(45,125,210,0.03)" font-weight="bold">
+    <text x="460" y="620">%</text>
+    <text x="640" y="280">$</text>
+  </g>
+</svg></div>
+<div class="sd" style="opacity:.05">
+  <svg viewBox="0 0 420 300" style="position:absolute;bottom:-10px;right:-10px;width:min(38%,400px);height:auto" xmlns="http://www.w3.org/2000/svg">
+    <text x="160" y="18" font-size="11" font-family="monospace" fill="#192840" text-anchor="middle" font-weight="700">KPI Performance by Quarter</text>
+    <!-- Y-axis -->
+    <line x1="40" y1="25" x2="40" y2="245" stroke="#192840" stroke-width="1" opacity=".4"/>
+    <line x1="40" y1="245" x2="410" y2="245" stroke="#192840" stroke-width="1" opacity=".4"/>
+    <!-- Y-axis grid + labels -->
+    <g font-size="9" font-family="monospace" fill="#192840" opacity=".5">
+      <line x1="38" y1="45"  x2="410" y2="45"  stroke="#192840" stroke-width=".5" stroke-dasharray="4,6"/>
+      <line x1="38" y1="85"  x2="410" y2="85"  stroke="#192840" stroke-width=".5" stroke-dasharray="4,6"/>
+      <line x1="38" y1="125" x2="410" y2="125" stroke="#192840" stroke-width=".5" stroke-dasharray="4,6"/>
+      <line x1="38" y1="165" x2="410" y2="165" stroke="#192840" stroke-width=".5" stroke-dasharray="4,6"/>
+      <line x1="38" y1="205" x2="410" y2="205" stroke="#192840" stroke-width=".5" stroke-dasharray="4,6"/>
+      <text x="34" y="48"  text-anchor="end">100%</text>
+      <text x="34" y="88"  text-anchor="end">80%</text>
+      <text x="34" y="128" text-anchor="end">60%</text>
+      <text x="34" y="168" text-anchor="end">40%</text>
+      <text x="34" y="208" text-anchor="end">20%</text>
+    </g>
+    <!-- Q1 bars -->
+    <rect x="50"  y="50"  width="18" height="195" fill="#2D7DD2" opacity=".7"/> <!-- CSAT 100% -->
+    <rect x="70"  y="68"  width="18" height="177" fill="#E9A015" opacity=".7"/> <!-- FCR  91% -->
+    <rect x="90"  y="60"  width="18" height="185" fill="#5BA3F5" opacity=".6"/> <!-- AHT  95% -->
+    <!-- Q2 bars -->
+    <rect x="150" y="55"  width="18" height="190" fill="#2D7DD2" opacity=".7"/>
+    <rect x="170" y="63"  width="18" height="182" fill="#E9A015" opacity=".7"/>
+    <rect x="190" y="58"  width="18" height="187" fill="#5BA3F5" opacity=".6"/>
+    <!-- Q3 bars -->
+    <rect x="250" y="47"  width="18" height="198" fill="#2D7DD2" opacity=".7"/>
+    <rect x="270" y="57"  width="18" height="188" fill="#E9A015" opacity=".7"/>
+    <rect x="290" y="52"  width="18" height="193" fill="#5BA3F5" opacity=".6"/>
+    <!-- Q4 bars -->
+    <rect x="350" y="45"  width="18" height="200" fill="#2D7DD2" opacity=".7"/>
+    <rect x="370" y="50"  width="18" height="195" fill="#E9A015" opacity=".7"/>
+    <rect x="390" y="48"  width="18" height="197" fill="#5BA3F5" opacity=".6"/>
+    <!-- X labels -->
+    <g font-size="9" font-family="monospace" fill="#192840" opacity=".5" text-anchor="middle">
+      <text x="80"  y="260">Q1</text>
+      <text x="180" y="260">Q2</text>
+      <text x="280" y="260">Q3</text>
+      <text x="380" y="260">Q4</text>
+    </g>
+    <!-- Legend -->
+    <g font-size="8" font-family="monospace" fill="#192840" opacity=".5">
+      <rect x="50"  y="272" width="10" height="8" fill="#2D7DD2" opacity=".7"/><text x="63"  y="280">CSAT</text>
+      <rect x="105" y="272" width="10" height="8" fill="#E9A015" opacity=".7"/><text x="118" y="280">FCR</text>
+      <rect x="150" y="272" width="10" height="8" fill="#5BA3F5" opacity=".6"/><text x="163" y="280">Efficiency</text>
+    </g>
+  </svg>
+</div>
+  <div class="section-inner">
+    <p class="eyebrow fu">What I Do</p>
+    <h2 class="sh fu d1">Turning data chaos<br>into operational clarity</h2>
+    <p class="sl fu d2">I help BPO operations, remote teams, and healthcare-adjacent businesses move from fragmented spreadsheets to automated, trustworthy reporting systems.</p>
+    <div class="svc-grid">
+      <div class="svc-card fu"><div class="svc-ico">📊</div><div class="svc-name">Data Analysis &amp; Reporting</div><p class="svc-desc">Daily, weekly, and monthly reporting cycles built to SLA. KPI dashboards, workforce metrics, NPS, revenue forecasts, structured, validated, and on time.</p><div class="svc-pills"><span class="pill">Power BI</span><span class="pill">Excel</span><span class="pill">Google Sheets</span><span class="pill">SQL</span></div></div>
+      <div class="svc-card fu d1"><div class="svc-ico">⚙️</div><div class="svc-name">Reporting Automation</div><p class="svc-desc">Eliminating copy-paste cycles with Apps Script, Power Query, and advanced formula engineering, so teams spend time on on analysis, not data entry.</p><div class="svc-pills"><span class="pill">Apps Script</span><span class="pill">Power Query</span><span class="pill">JavaScript</span></div></div>
+      <div class="svc-card fu d2"><div class="svc-ico">🗂️</div><div class="svc-name">Data Quality &amp; Governance</div><p class="svc-desc">Validation rules, deduplication logic, reconciliation frameworks, and exception handling, so the numbers leadership reads are numbers they can trust.</p><div class="svc-pills"><span class="pill">Validation</span><span class="pill">Reconciliation</span><span class="pill">99%+ Accuracy</span></div></div>
+      <div class="svc-card fu d3"><div class="svc-ico">📈</div><div class="svc-name">Dashboard Development</div><p class="svc-desc">Multi-source, interactive dashboards in Power BI and Google Sheets with real-time updates, drilldowns, and executive-ready visuals that don't need a manual to read.</p><div class="svc-pills"><span class="pill">Power BI</span><span class="pill">IMPORTRANGE</span><span class="pill">QUERY</span></div></div>
+      <div class="svc-card fu d4"><div class="svc-ico">🎯</div><div class="svc-name">Forecasting &amp; Trend Analysis</div><p class="svc-desc">Revenue forecasting at 98% accuracy, productivity trending, and outlier analysis, giving teams the visibility to course-correct before small problems compound.</p><div class="svc-pills"><span class="pill">Forecasting</span><span class="pill">Trend Analysis</span><span class="pill">Outlier Detection</span></div></div>
+      <div class="svc-card fu d5"><div class="svc-ico">🤝</div><div class="svc-name">Cross-Functional Reporting</div><p class="svc-desc">Translating business requirements into repeatable, scalable reporting systems, bridging operations, finance, and leadership so data actually moves decisions.</p><div class="svc-pills"><span class="pill">Process Design</span><span class="pill">Documentation</span><span class="pill">Stakeholder Comms</span></div></div>
+    </div>
+  </div>
+</section>
+
 <!-- DASHBOARD GALLERY -->
 <section class="gallery-section" id="dashboards">
 <div class="sec-bg" aria-hidden="true"><svg viewBox="0 0 1400 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
@@ -333,6 +706,57 @@
   <!-- Gold accent line -->
   <line x1="0" y1="695" x2="1400" y2="695" stroke="rgba(233,160,21,0.08)" stroke-width="1.5"/>
 </svg></div>
+<div class="sd" style="opacity:.055">
+  <svg viewBox="0 0 500 420" style="position:absolute;top:50%;right:-20px;transform:translateY(-50%);width:min(36%,380px);height:auto" xmlns="http://www.w3.org/2000/svg">
+    <!-- KPI card 1 -->
+    <rect x="10" y="10" width="100" height="60" rx="6" fill="none" stroke="white" stroke-width="1.2"/>
+    <text x="20" y="28" font-size="7" font-family="monospace" fill="white" opacity=".5">TOTAL PRODUCTION</text>
+    <text x="20" y="52" font-size="18" font-family="sans-serif" fill="white" font-weight="700">$69.6M</text>
+    <!-- KPI card 2 -->
+    <rect x="118" y="10" width="100" height="60" rx="6" fill="none" stroke="white" stroke-width="1.2"/>
+    <text x="128" y="28" font-size="7" font-family="monospace" fill="white" opacity=".5">COLLECTION RATE</text>
+    <text x="128" y="52" font-size="18" font-family="sans-serif" fill="white" font-weight="700">91.4%</text>
+    <!-- KPI card 3 -->
+    <rect x="226" y="10" width="100" height="60" rx="6" fill="none" stroke="white" stroke-width="1.2"/>
+    <text x="236" y="28" font-size="7" font-family="monospace" fill="white" opacity=".5">TOTAL PATIENTS</text>
+    <text x="236" y="52" font-size="18" font-family="sans-serif" fill="white" font-weight="700">76K</text>
+    <!-- KPI card 4 -->
+    <rect x="334" y="10" width="100" height="60" rx="6" fill="none" stroke="white" stroke-width="1.2"/>
+    <text x="344" y="28" font-size="7" font-family="monospace" fill="white" opacity=".5">PROCEDURES</text>
+    <text x="344" y="52" font-size="18" font-family="sans-serif" fill="white" font-weight="700">723K</text>
+    <!-- Mini line chart -->
+    <rect x="10" y="80" width="230" height="130" rx="6" fill="none" stroke="white" stroke-width="1.2"/>
+    <text x="20" y="96" font-size="7" font-family="monospace" fill="white" opacity=".5">PRODUCTION BY MONTH</text>
+    <polyline points="20,190 55,175 90,182 125,158 160,140 195,120 225,108"
+      fill="none" stroke="white" stroke-width="1.5" stroke-linejoin="round" opacity=".6"/>
+    <line x1="20" y1="170" x2="230" y2="170" stroke="white" stroke-width=".5" stroke-dasharray="3,5" opacity=".3"/>
+    <line x1="20" y1="145" x2="230" y2="145" stroke="white" stroke-width=".5" stroke-dasharray="3,5" opacity=".3"/>
+    <line x1="20" y1="120" x2="230" y2="120" stroke="white" stroke-width=".5" stroke-dasharray="3,5" opacity=".3"/>
+    <!-- Donut chart -->
+    <rect x="248" y="80" width="186" height="130" rx="6" fill="none" stroke="white" stroke-width="1.2"/>
+    <text x="258" y="96" font-size="7" font-family="monospace" fill="white" opacity=".5">INSURANCE SPLIT</text>
+    <circle cx="340" cy="155" r="38" fill="none" stroke="white" stroke-width="14" stroke-dasharray="95 144" stroke-dashoffset="0" opacity=".4"/>
+    <circle cx="340" cy="155" r="38" fill="none" stroke="#E9A015" stroke-width="14" stroke-dasharray="60 144" stroke-dashoffset="-95" opacity=".4"/>
+    <circle cx="340" cy="155" r="38" fill="none" stroke="#5BA3F5" stroke-width="14" stroke-dasharray="50 144" stroke-dashoffset="-155" opacity=".4"/>
+    <!-- Mini bar chart bottom -->
+    <rect x="10" y="220" width="424" height="120" rx="6" fill="none" stroke="white" stroke-width="1.2"/>
+    <text x="20" y="236" font-size="7" font-family="monospace" fill="white" opacity=".5">PRODUCTION BY SPECIALTY</text>
+    <rect x="75"  y="248" width="195" height="12" rx="2" fill="white" opacity=".35"/>
+    <rect x="75"  y="266" width="120" height="12" rx="2" fill="white" opacity=".25"/>
+    <rect x="75"  y="284" width="90"  height="12" rx="2" fill="white" opacity=".22"/>
+    <rect x="75"  y="302" width="65"  height="12" rx="2" fill="white" opacity=".18"/>
+    <g font-size="8" font-family="monospace" fill="white" opacity=".4" text-anchor="end">
+      <text x="72" y="259">Dentist</text>
+      <text x="72" y="277">Ortho</text>
+      <text x="72" y="295">Hygienist</text>
+      <text x="72" y="313">Single Spec</text>
+    </g>
+    <text x="272" y="259" font-size="8" font-family="monospace" fill="white" opacity=".5">$49.0M</text>
+    <text x="197" y="277" font-size="8" font-family="monospace" fill="white" opacity=".5">$9.5M</text>
+    <text x="167" y="295" font-size="8" font-family="monospace" fill="white" opacity=".5">$6.9M</text>
+    <text x="142" y="313" font-size="8" font-family="monospace" fill="white" opacity=".5">$3.2M</text>
+  </svg>
+</div>
   <div class="section-inner">
     <p class="eyebrow fu">Live Work Sample</p>
     <h2 class="sh fu d1">Power BI Dashboards Built for Real Operations</h2>
@@ -382,37 +806,943 @@
   </div>
 </section>
 
+<!-- CASE STUDIES -->
+<section class="cases-section" id="cases">
+<div class="sec-bg" aria-hidden="true"><svg viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <!-- Large faint upward bar chart background -->
+  <g opacity="0.04" fill="#2D7DD2">
+    <rect x="50" y="620" width="55" height="280" rx="4"/><rect x="120" y="540" width="55" height="360" rx="4"/>
+    <rect x="190" y="480" width="55" height="420" rx="4"/><rect x="260" y="400" width="55" height="500" rx="4"/>
+    <rect x="330" y="460" width="55" height="440" rx="4"/><rect x="400" y="360" width="55" height="540" rx="4"/>
+    <rect x="470" y="300" width="55" height="600" rx="4"/><rect x="540" y="420" width="55" height="480" rx="4"/>
+  </g>
+  <!-- Upward trend arrow faint right -->
+  <g opacity="0.045" fill="none" stroke="#2D7DD2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="900,750 980,680 1060,700 1140,620 1220,580 1300,500 1370,460"/>
+    <polyline points="1330,450 1370,460 1360,500"/>
+  </g>
+  <g opacity="0.05" fill="#2D7DD2">
+    <circle cx="980" cy="680" r="6"/><circle cx="1060" cy="700" r="6"/>
+    <circle cx="1140" cy="620" r="6"/><circle cx="1220" cy="580" r="6"/>
+    <circle cx="1300" cy="500" r="6"/>
+  </g>
+  <!-- Funnel chart outline top-right -->
+  <g opacity="0.04" fill="none" stroke="#2D7DD2" stroke-width="1.5">
+    <polygon points="1050,60 1350,60 1280,140 1120,140"/>
+    <polygon points="1120,150 1280,150 1240,220 1160,220"/>
+    <polygon points="1160,230 1240,230 1215,290 1185,290"/>
+    <rect x="1185" y="300" width="30" height="40" rx="3"/>
+  </g>
+  <!-- Large faint metric symbols -->
+  <g font-family="sans-serif" font-weight="bold" fill="rgba(45,125,210,0.035)">
+    <text x="640" y="820" font-size="200">%</text>
+  </g>
+  <!-- KPI box outlines bottom-right -->
+  <g fill="none" stroke="rgba(45,125,210,0.06)" stroke-width="1.5">
+    <rect x="900" y="200" width="130" height="70" rx="8"/>
+    <rect x="900" y="290" width="130" height="70" rx="8"/>
+    <rect x="900" y="380" width="130" height="70" rx="8"/>
+    <text x="920" y="245" font-family="'Courier New',monospace" font-size="22" fill="rgba(45,125,210,0.07)" stroke="none">+12%</text>
+    <text x="920" y="335" font-family="'Courier New',monospace" font-size="22" fill="rgba(45,125,210,0.07)" stroke="none">-20%</text>
+    <text x="920" y="425" font-family="'Courier New',monospace" font-size="22" fill="rgba(45,125,210,0.07)" stroke="none">+10%</text>
+  </g>
+</svg></div>
+<div class="sd" style="opacity:.05">
+  <svg viewBox="0 0 360 280" style="position:absolute;top:-5px;right:-5px;width:min(32%,340px);height:auto" xmlns="http://www.w3.org/2000/svg">
+    <text x="180" y="16" font-size="10" font-family="monospace" fill="#192840" text-anchor="middle" font-weight="700">CSAT vs FCR Performance</text>
+    <!-- Axes -->
+    <line x1="45" y1="20" x2="45" y2="240" stroke="#192840" stroke-width="1" opacity=".4"/>
+    <line x1="45" y1="240" x2="345" y2="240" stroke="#192840" stroke-width="1" opacity=".4"/>
+    <!-- Grid -->
+    <g stroke="#192840" stroke-width=".5" stroke-dasharray="3,6" opacity=".25">
+      <line x1="45" y1="50"  x2="345" y2="50"/>
+      <line x1="45" y1="90"  x2="345" y2="90"/>
+      <line x1="45" y1="130" x2="345" y2="130"/>
+      <line x1="45" y1="170" x2="345" y2="170"/>
+      <line x1="45" y1="210" x2="345" y2="210"/>
+      <line x1="105" y1="20" x2="105" y2="240"/>
+      <line x1="165" y1="20" x2="165" y2="240"/>
+      <line x1="225" y1="20" x2="225" y2="240"/>
+      <line x1="285" y1="20" x2="285" y2="240"/>
+    </g>
+    <!-- Trend line -->
+    <line x1="60" y1="220" x2="335" y2="35" stroke="#2D7DD2" stroke-width="1.5" stroke-dasharray="6,4" opacity=".4"/>
+    <!-- Scatter points (various team performances) -->
+    <g fill="#2D7DD2" opacity=".7">
+      <circle cx="72"  cy="210" r="5"/>
+      <circle cx="90"  cy="195" r="5"/>
+      <circle cx="118" cy="185" r="5"/>
+      <circle cx="135" cy="170" r="5"/>
+      <circle cx="152" cy="160" r="5"/>
+      <circle cx="170" cy="148" r="5"/>
+      <circle cx="195" cy="132" r="5"/>
+      <circle cx="215" cy="115" r="5"/>
+      <circle cx="240" cy="100" r="5"/>
+      <circle cx="262" cy="88"  r="5"/>
+      <circle cx="285" cy="72"  r="5"/>
+      <circle cx="310" cy="55"  r="5"/>
+      <circle cx="328" cy="42"  r="5"/>
+    </g>
+    <!-- Gold highlight points (top performers) -->
+    <circle cx="328" cy="42"  r="7" fill="none" stroke="#E9A015" stroke-width="2" opacity=".8"/>
+    <circle cx="310" cy="55"  r="7" fill="none" stroke="#E9A015" stroke-width="2" opacity=".8"/>
+    <!-- Axis labels -->
+    <g font-size="8" font-family="monospace" fill="#192840" opacity=".5">
+      <text x="34" y="53"  text-anchor="end">99%</text>
+      <text x="34" y="93"  text-anchor="end">95%</text>
+      <text x="34" y="133" text-anchor="end">90%</text>
+      <text x="34" y="173" text-anchor="end">85%</text>
+      <text x="34" y="213" text-anchor="end">80%</text>
+      <text x="65"  y="255" text-anchor="middle">75%</text>
+      <text x="125" y="255" text-anchor="middle">80%</text>
+      <text x="185" y="255" text-anchor="middle">85%</text>
+      <text x="245" y="255" text-anchor="middle">90%</text>
+      <text x="305" y="255" text-anchor="middle">95%</text>
+    </g>
+    <text x="195" y="268" font-size="8" font-family="monospace" fill="#192840" text-anchor="middle" opacity=".4">FCR Rate</text>
+    <text x="15" y="135" font-size="8" font-family="monospace" fill="#192840" text-anchor="middle" opacity=".4" transform="rotate(-90,15,135)">CSAT Score</text>
+  </svg>
+</div>
+  <div class="section-inner">
+    <p class="eyebrow fu">Case Studies</p>
+    <h2 class="sh fu d1">Real projects. Measurable outcomes.</h2>
+    <p class="sl fu d2">Three reporting challenges, different industries, same outcome: systems that run, numbers that hold up, and leaders who can finally act on what they see.</p>
+    <div class="cases-grid">
+      <div class="case-card fu">
+        <span class="case-sector">BPO · CX Operations</span>
+        <h3 class="case-h">Performance Reporting Suite for 1,000+ Agent Operations</h3>
+        <p class="case-p">Rebuilt Concentrix's fragmented MBR/WBR reporting suite, with automated coaching, shrinkage, and outlier dashboards in Excel and Google Sheets, connected to a centralized view leadership could trust. Reduced manual reconciliation from hours to minutes, daily.</p>
+        <div class="case-stack"><span class="s-pill">Microsoft Excel</span><span class="s-pill">Google Sheets</span><span class="s-pill">Power BI</span><span class="s-pill">Advanced Formulas</span><span class="s-pill">Power Query</span></div>
+        <div class="case-metrics">
+          <div class="met"><span class="met-val">40%</span><span class="met-lbl">Manual Time<br>Reduced</span></div>
+          <div class="met"><span class="met-val">98%</span><span class="met-lbl">Forecast<br>Accuracy</span></div>
+          <div class="met"><span class="met-val">99%+</span><span class="met-lbl">Data Accuracy<br>Maintained</span></div>
+        </div>
+      </div>
+      <div class="case-card fu d1">
+        <span class="case-sector">Healthcare-Adjacent · Dental Practice</span>
+        <h3 class="case-h">Automated Reporting Pipeline for Multi-Source Dental Operations</h3>
+        <p class="case-p">Engineered event-driven automation in Google Sheets using Apps Script and JavaScript. Layered QUERY, ARRAYFORMULA, XLOOKUP, and IMPORTRANGE into unified live dashboards, and built a governance framework with validation, deduplication, and exception handling baked in structurally.</p>
+        <div class="case-stack"><span class="s-pill">Google Sheets</span><span class="s-pill">Apps Script</span><span class="s-pill">JavaScript</span><span class="s-pill">QUERY / ARRAYFORMULA</span><span class="s-pill">Data Governance</span></div>
+        <div class="case-metrics">
+          <div class="met"><span class="met-val">50%</span><span class="met-lbl">Manual Effort<br>Eliminated</span></div>
+          <div class="met"><span class="met-val">Live</span><span class="met-lbl">Multi-Source<br>Dashboards</span></div>
+          <div class="met"><span class="met-val">0</span><span class="met-lbl">Daily Manual<br>Refreshes</span></div>
+        </div>
+      </div>
+      <div class="case-card full fu">
+        <span class="case-sector">BPO · Agent Performance &amp; Incentive Management</span>
+        <h3 class="case-h">KPI Uplift Initiative: CSAT, FCR &amp; AHT Through Reporting Visibility</h3>
+        <p class="case-p">Performance scores were plateauing across the site, not from lack of effort, but because data on where breakdowns were happening arrived too late to address. I built structured incentive reporting for 1,000+ agents and supports, and overlaid near-real-time outlier tracking that surfaced FCR failures and AHT spikes by team and day. Supervisors shifted from reactive to targeted coaching. CSAT moved, FCR moved, and AHT fell, within the same reporting cycle.</p>
+        <div class="case-stack"><span class="s-pill">Excel Power Query</span><span class="s-pill">Google Sheets</span><span class="s-pill">Incentive Tracking</span><span class="s-pill">Outlier Analysis</span><span class="s-pill">KPI Dashboards</span><span class="s-pill">PowerPoint</span></div>
+        <div class="case-metrics">
+          <div class="met"><span class="met-val">+12%</span><span class="met-lbl">CSAT<br>Improvement</span></div>
+          <div class="met"><span class="met-val">+10%</span><span class="met-lbl">FCR<br>Improvement</span></div>
+          <div class="met"><span class="met-val">−20%</span><span class="met-lbl">AHT<br>Reduction</span></div>
+          <div class="met"><span class="met-val">1,000+</span><span class="met-lbl">Agents<br>Covered</span></div>
+          <div class="met"><span class="met-val">4 yr</span><span class="met-lbl">Reporting<br>Tenure</span></div>
+          <div class="met"><span class="met-val">100%</span><span class="met-lbl">SLA On-Time<br>Delivery</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM → SOLUTION STORIES -->
+<section class="stories-section" id="stories">
+<div class="sec-bg" aria-hidden="true"><svg viewBox="0 0 1400 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <!-- Flowchart left side -->
+  <g opacity="0.05" fill="none" stroke="#2D7DD2" stroke-width="1.5">
+    <!-- boxes -->
+    <rect x="40" y="120" width="160" height="60" rx="8"/>
+    <rect x="40" y="260" width="160" height="60" rx="8"/>
+    <rect x="40" y="400" width="160" height="60" rx="8"/>
+    <rect x="40" y="540" width="160" height="60" rx="8"/>
+    <!-- diamond decision -->
+    <polygon points="120,210 175,235 120,260 65,235"/>
+    <polygon points="120,350 175,375 120,400 65,375"/>
+    <!-- connector arrows -->
+    <line x1="120" y1="180" x2="120" y2="208"/><polygon points="115,205 120,215 125,205" fill="#2D7DD2"/>
+    <line x1="120" y1="262" x2="120" y2="258"/>
+    <line x1="120" y1="285" x2="120" y2="348"/><polygon points="115,345 120,355 125,345" fill="#2D7DD2"/>
+    <line x1="120" y1="402" x2="120" y2="398"/>
+    <line x1="120" y1="425" x2="120" y2="538"/><polygon points="115,535 120,545 125,535" fill="#2D7DD2"/>
+    <!-- side branch -->
+    <line x1="175" y1="235" x2="240" y2="235"/><line x1="240" y1="235" x2="240" y2="175"/>
+    <line x1="175" y1="375" x2="250" y2="375"/><line x1="250" y1="375" x2="250" y2="200"/>
+  </g>
+  <!-- Flowchart text labels -->
+  <g font-family="'Courier New',monospace" font-size="11" fill="rgba(45,125,210,0.07)" text-anchor="middle">
+    <text x="120" y="155">IDENTIFY ISSUE</text>
+    <text x="120" y="300">ANALYZE ROOT</text>
+    <text x="120" y="440">BUILD SOLUTION</text>
+    <text x="120" y="578">VALIDATE OUTPUT</text>
+  </g>
+  <!-- Right side: data pipeline flow -->
+  <g opacity="0.05" fill="none" stroke="#2D7DD2" stroke-width="1.5">
+    <!-- pipeline boxes -->
+    <rect x="1100" y="80" width="110" height="50" rx="6"/><text x="1155" y="111" font-family="sans-serif" font-size="11" fill="rgba(45,125,210,0.08)" text-anchor="middle">SOURCE</text>
+    <rect x="1100" y="190" width="110" height="50" rx="6"/><text x="1155" y="221" font-family="sans-serif" font-size="11" fill="rgba(45,125,210,0.08)" text-anchor="middle">CLEAN</text>
+    <rect x="1100" y="300" width="110" height="50" rx="6"/><text x="1155" y="331" font-family="sans-serif" font-size="11" fill="rgba(45,125,210,0.08)" text-anchor="middle">TRANSFORM</text>
+    <rect x="1100" y="410" width="110" height="50" rx="6"/><text x="1155" y="441" font-family="sans-serif" font-size="11" fill="rgba(45,125,210,0.08)" text-anchor="middle">VALIDATE</text>
+    <rect x="1100" y="520" width="110" height="50" rx="6"/><text x="1155" y="551" font-family="sans-serif" font-size="11" fill="rgba(45,125,210,0.08)" text-anchor="middle">REPORT</text>
+    <!-- connectors -->
+    <line x1="1155" y1="130" x2="1155" y2="188"/><polygon points="1150,185 1155,195 1160,185" fill="#2D7DD2"/>
+    <line x1="1155" y1="240" x2="1155" y2="298"/><polygon points="1150,295 1155,305 1160,295" fill="#2D7DD2"/>
+    <line x1="1155" y1="350" x2="1155" y2="408"/><polygon points="1150,405 1155,415 1160,405" fill="#2D7DD2"/>
+    <line x1="1155" y1="460" x2="1155" y2="518"/><polygon points="1150,515 1155,525 1160,515" fill="#2D7DD2"/>
+  </g>
+  <!-- ETL formula hint center-bottom -->
+  <g font-family="'Courier New',monospace" font-size="12" fill="rgba(45,125,210,0.06)">
+    <text x="450" y="640">SELECT patient_id, SUM(production) FROM dental_data</text>
+    <text x="450" y="662">WHERE date BETWEEN '2023-01-01' AND '2026-06-29'</text>
+    <text x="450" y="684">GROUP BY patient_id ORDER BY production DESC</text>
+  </g>
+</svg></div>
+<div class="sd" style="opacity:.05">
+  <svg viewBox="0 0 200 500" style="position:absolute;top:50%;right:20px;transform:translateY(-50%);width:min(16%,180px);height:auto" xmlns="http://www.w3.org/2000/svg">
+    <!-- Flow: Data In -> Validate -> Analyze -> Report -> Action -->
+    <!-- Node 1 -->
+    <rect x="30" y="10" width="140" height="42" rx="6" fill="#2D7DD2" opacity=".2" stroke="#2D7DD2" stroke-width="1.2"/>
+    <text x="100" y="27" font-size="9" font-family="monospace" fill="#192840" text-anchor="middle" font-weight="700">DATA RECEIVED</text>
+    <text x="100" y="43" font-size="7" font-family="monospace" fill="#192840" text-anchor="middle">Raw source ingestion</text>
+    <!-- Arrow -->
+    <line x1="100" y1="52" x2="100" y2="72" stroke="#192840" stroke-width="1.5" opacity=".4"/>
+    <polygon points="93,68 107,68 100,78" fill="#192840" opacity=".4"/>
+    <!-- Node 2 -->
+    <rect x="30" y="78" width="140" height="42" rx="6" fill="#E9A015" opacity=".15" stroke="#E9A015" stroke-width="1.2"/>
+    <text x="100" y="95" font-size="9" font-family="monospace" fill="#192840" text-anchor="middle" font-weight="700">VALIDATE</text>
+    <text x="100" y="111" font-size="7" font-family="monospace" fill="#192840" text-anchor="middle">Rules + deduplication</text>
+    <!-- Arrow + decision -->
+    <line x1="100" y1="120" x2="100" y2="140" stroke="#192840" stroke-width="1.5" opacity=".4"/>
+    <!-- Diamond decision -->
+    <polygon points="100,140 130,162 100,184 70,162" fill="none" stroke="#192840" stroke-width="1.2" opacity=".4"/>
+    <text x="100" y="158" font-size="7" font-family="monospace" fill="#192840" text-anchor="middle">Clean?</text>
+    <text x="100" y="170" font-size="6" font-family="monospace" fill="#192840" text-anchor="middle">Y / N</text>
+    <!-- No branch left -->
+    <line x1="70" y1="162" x2="18" y2="162" stroke="#192840" stroke-width="1.2" opacity=".35" stroke-dasharray="3,3"/>
+    <text x="44" y="158" font-size="7" font-family="monospace" fill="#E05252" text-anchor="middle" opacity=".7">NO</text>
+    <line x1="18" y1="162" x2="18" y2="100" stroke="#192840" stroke-width="1.2" opacity=".35" stroke-dasharray="3,3"/>
+    <line x1="18" y1="100" x2="30" y2="100" stroke="#192840" stroke-width="1.2" opacity=".35" stroke-dasharray="3,3"/>
+    <!-- Yes arrow down -->
+    <line x1="100" y1="184" x2="100" y2="204" stroke="#192840" stroke-width="1.5" opacity=".4"/>
+    <text x="108" y="198" font-size="7" font-family="monospace" fill="#16A34A" opacity=".8">YES</text>
+    <polygon points="93,200 107,200 100,210" fill="#192840" opacity=".4"/>
+    <!-- Node 3 -->
+    <rect x="30" y="210" width="140" height="42" rx="6" fill="#2D7DD2" opacity=".2" stroke="#2D7DD2" stroke-width="1.2"/>
+    <text x="100" y="227" font-size="9" font-family="monospace" fill="#192840" text-anchor="middle" font-weight="700">ANALYZE</text>
+    <text x="100" y="243" font-size="7" font-family="monospace" fill="#192840" text-anchor="middle">Trends + outliers</text>
+    <!-- Arrow -->
+    <line x1="100" y1="252" x2="100" y2="272" stroke="#192840" stroke-width="1.5" opacity=".4"/>
+    <polygon points="93,268 107,268 100,278" fill="#192840" opacity=".4"/>
+    <!-- Node 4 -->
+    <rect x="30" y="278" width="140" height="42" rx="6" fill="#2D7DD2" opacity=".2" stroke="#2D7DD2" stroke-width="1.2"/>
+    <text x="100" y="295" font-size="9" font-family="monospace" fill="#192840" text-anchor="middle" font-weight="700">BUILD REPORT</text>
+    <text x="100" y="311" font-size="7" font-family="monospace" fill="#192840" text-anchor="middle">KPI dashboard output</text>
+    <!-- Arrow -->
+    <line x1="100" y1="320" x2="100" y2="340" stroke="#192840" stroke-width="1.5" opacity=".4"/>
+    <polygon points="93,336 107,336 100,346" fill="#192840" opacity=".4"/>
+    <!-- Node 5 -->
+    <rect x="30" y="346" width="140" height="42" rx="6" fill="#16A34A" opacity=".15" stroke="#16A34A" stroke-width="1.2"/>
+    <text x="100" y="363" font-size="9" font-family="monospace" fill="#192840" text-anchor="middle" font-weight="700">ACTION TAKEN</text>
+    <text x="100" y="379" font-size="7" font-family="monospace" fill="#192840" text-anchor="middle">Data-driven decision</text>
+    <!-- Done -->
+    <circle cx="100" cy="415" r="20" fill="none" stroke="#16A34A" stroke-width="2" opacity=".4"/>
+    <text x="100" y="420" font-size="10" font-family="monospace" fill="#16A34A" text-anchor="middle" font-weight="700" opacity=".5">DONE</text>
+    <line x1="100" y1="388" x2="100" y2="395" stroke="#192840" stroke-width="1.5" opacity=".35"/>
+    <polygon points="93,391 107,391 100,401" fill="#16A34A" opacity=".4"/>
+  </svg>
+</div>
+  <div class="section-inner">
+    <p class="eyebrow fu">Problem → Solution</p>
+    <h2 class="sh fu d1">How I think when things break</h2>
+    <p class="sl fu d2">Real scenarios: the problem that landed on the desk, the approach taken, and what changed as a result.</p>
+    <div class="stories-grid">
+
+      <!-- Story 1: Concentrix KPI Visibility -->
+      <div class="story-card fu">
+        <div class="story-header">
+          <div class="story-tag">Concentrix · BPO Operations</div>
+          <div class="story-title">Turning a 2–3 Day Reporting Lag Into Hourly KPI Visibility</div>
+        </div>
+        <div class="story-body">
+          <div class="story-block">
+            <div class="story-label sl-prob">
+              <div class="sl-icon prob">⚠</div>
+              <span>The Problem</span>
+            </div>
+            <p class="story-text">The site's KPI performance was declining, but the team only found out when the client sent rankings, typically with a 2–3 day lag. By the time leadership had the numbers, the coaching window had already closed. The operations team was reacting to a past they couldn't change, and it was directly affecting site bonus outcomes and client standing.</p>
+          </div>
+          <div class="story-block">
+            <div class="story-label sl-sol">
+              <div class="sl-icon sol">→</div>
+              <span>The Solution</span>
+            </div>
+            <p class="story-text">I collaborated with the operations and quality teams to identify what signals were available in real time. My role was to design and build a dashboard that tracked hourly agent behavior and quality performance metrics, giving leadership immediate visibility into trends before they compounded. The goal wasn't just a dashboard; it was a shift in how the team operated: from waiting for external reports to monitoring their own data, on their own schedule.</p>
+          </div>
+          <div class="story-block">
+            <div class="story-label sl-res">
+              <div class="sl-icon res">✓</div>
+              <span>The Result</span>
+            </div>
+            <p class="story-text">The site moved from reactive management to proactive, hourly performance monitoring. Coaching became targeted and timely. Accountability became visible across teams. The improvement in KPI consistency directly supported better site bonus outcomes and reinforced a culture where data clarity drove operational decisions, not the client's delayed report.</p>
+          </div>
+          <div class="story-wins">
+            <span class="win-tag">Reactive → Proactive management</span>
+            <span class="win-tag">Hourly visibility from 2–3 day lag</span>
+            <span class="win-tag">Site bonus improvement</span>
+            <span class="win-tag">Structured accountability</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 2: NYFD Data Accuracy -->
+      <div class="story-card fu d1">
+        <div class="story-header">
+          <div class="story-tag">New York Family Dentistry · Healthcare</div>
+          <div class="story-title">Fixing a Broken Patient Identifier That Was Quietly Corrupting Reports</div>
+        </div>
+        <div class="story-body">
+          <div class="story-block">
+            <div class="story-label sl-prob">
+              <div class="sl-icon prob">⚠</div>
+              <span>The Problem</span>
+            </div>
+            <p class="story-text">The organization's reporting relied on Patient Chart IDs as the primary identifier, but during analysis, it became clear these IDs were sometimes missing or inconsistent across datasets. The downstream effect was inaccurate reporting outputs, duplicate patient records, and decisions being made on data that didn't reflect reality. Trust in the reporting pipeline was eroding.</p>
+          </div>
+          <div class="story-block">
+            <div class="story-label sl-sol">
+              <div class="sl-icon sol">→</div>
+              <span>The Solution</span>
+            </div>
+            <p class="story-text">I reviewed the full data pipeline and traced the inconsistencies back to their source. Through the analysis, I discovered that the system actually contained a unique patient identifier that wasn't being used in reporting, more reliable, more consistent, and present across all datasets. I recommended transitioning the reporting logic to use this true unique patient ID, replacing the unreliable Chart ID as the primary key for patient record tracking.</p>
+          </div>
+          <div class="story-block">
+            <div class="story-label sl-res">
+              <div class="sl-icon res">✓</div>
+              <span>The Result</span>
+            </div>
+            <p class="story-text">Switching to the unique patient ID eliminated duplicate records, reduced data inconsistencies, and restored trust in reporting outputs across the organization. Teams could now make operational decisions from standardized, accurate information, and the long-term reporting infrastructure became more reliable as a result. A structural fix, not a patch.</p>
+          </div>
+          <div class="story-wins">
+            <span class="win-tag">Root cause identified in pipeline</span>
+            <span class="win-tag">Duplicate records eliminated</span>
+            <span class="win-tag">Restored reporting trust</span>
+            <span class="win-tag">Structural data integrity fix</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+<div class="sec-bg" aria-hidden="true"><svg viewBox="0 0 1400 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <!-- Large horizontal bar chart background -->
+  <g opacity="0.04" fill="#2D7DD2">
+    <rect x="700" y="100" width="620" height="35" rx="4"/>
+    <rect x="700" y="155" width="580" height="35" rx="4"/>
+    <rect x="700" y="210" width="530" height="35" rx="4"/>
+    <rect x="700" y="265" width="500" height="35" rx="4"/>
+    <rect x="700" y="320" width="480" height="35" rx="4"/>
+    <rect x="700" y="375" width="550" height="35" rx="4"/>
+    <rect x="700" y="430" width="590" height="35" rx="4"/>
+  </g>
+  <!-- SQL code left -->
+  <g font-family="'Courier New',monospace" font-size="12" fill="rgba(45,125,210,0.07)">
+    <text x="30" y="400">SELECT</text>
+    <text x="30" y="422">  agent_id,</text>
+    <text x="30" y="444">  SUM(production) AS total_prod,</text>
+    <text x="30" y="466">  AVG(csat_score)  AS avg_csat,</text>
+    <text x="30" y="488">  COUNT(DISTINCT date) AS days</text>
+    <text x="30" y="510">FROM performance_data</text>
+    <text x="30" y="532">WHERE site = 'Manila'</text>
+    <text x="30" y="554">  AND period = '2024-Q1'</text>
+    <text x="30" y="576">GROUP BY agent_id</text>
+    <text x="30" y="598">ORDER BY avg_csat DESC;</text>
+  </g>
+  <!-- Power Query / M formula top -->
+  <g font-family="'Courier New',monospace" font-size="12" fill="rgba(45,125,210,0.065)">
+    <text x="30" y="60">let</text>
+    <text x="30" y="82">  Source = Excel.CurrentWorkbook(){[Name="Data"]}[Content],</text>
+    <text x="30" y="104">  FilteredRows = Table.SelectRows(Source, each [Status] = "Active"),</text>
+    <text x="30" y="126">  GroupedData = Table.Group(FilteredRows, {"Office"}, </text>
+    <text x="30" y="148">    {{"Total", each List.Sum([Production]), type number}}),</text>
+    <text x="30" y="170">  SortedTable = Table.Sort(GroupedData, {{"Total", Order.Descending}})</text>
+    <text x="30" y="192">in SortedTable</text>
+  </g>
+  <!-- Radar chart outline right -->
+  <g opacity="0.05" fill="none" stroke="#2D7DD2" stroke-width="1.5">
+    <polygon points="1300,480 1360,540 1340,620 1260,640 1200,580 1220,500"/>
+    <polygon points="1300,510 1340,555 1325,615 1262,630 1218,578 1233,513" stroke-width="1"/>
+    <polygon points="1300,540 1322,568 1313,607 1264,618 1237,576 1246,526" stroke-width="1"/>
+    <line x1="1300" y1="480" x2="1300" y2="640"/><line x1="1300" y1="480" x2="1360" y2="540"/>
+    <line x1="1300" y1="480" x2="1340" y2="620"/><line x1="1300" y1="480" x2="1200" y2="580"/>
+    <line x1="1300" y1="480" x2="1220" y2="500"/>
+    <circle cx="1300" cy="480" r="5" fill="#2D7DD2"/>
+  </g>
+</svg></div>
+<div class="sd" style="opacity:.06">
+  <svg viewBox="0 0 300 300" style="position:absolute;top:50%;left:-30px;transform:translateY(-50%);width:min(28%,280px);height:auto" xmlns="http://www.w3.org/2000/svg">
+    <!-- Radar chart centered at 150,150 -->
+    <!-- Axis lines (7 skills) -->
+    <g stroke="#192840" stroke-width=".8" opacity=".4">
+      <line x1="150" y1="150" x2="150" y2="18"/>
+      <line x1="150" y1="150" x2="262" y2="83"/>
+      <line x1="150" y1="150" x2="262" y2="217"/>
+      <line x1="150" y1="150" x2="150" y2="282"/>
+      <line x1="150" y1="150" x2="38"  y2="217"/>
+      <line x1="150" y1="150" x2="38"  y2="83"/>
+    </g>
+    <!-- Concentric hexagons (25%, 50%, 75%, 100%) -->
+    <g fill="none" stroke="#192840" stroke-width=".7" opacity=".3">
+      <!-- 25% -->
+      <polygon points="150,117 183,134 183,166 150,183 117,166 117,134"/>
+      <!-- 50% -->
+      <polygon points="150,84 216,118 216,182 150,216 84,182 84,118"/>
+      <!-- 75% -->
+      <polygon points="150,51 249,101 249,199 150,249 51,199 51,101"/>
+      <!-- 100% border -->
+      <polygon points="150,18 282,84 282,216 150,282 18,216 18,84"/>
+    </g>
+    <!-- Data polygon (skill levels) -->
+    <polygon points="150,28 270,92 255,205 150,265 55,205 48,95"
+      fill="#2D7DD2" fill-opacity=".12" stroke="#2D7DD2" stroke-width="2" opacity=".7"/>
+    <!-- Skill dots -->
+    <g fill="#2D7DD2" opacity=".8">
+      <circle cx="150" cy="28"  r="4.5"/>
+      <circle cx="270" cy="92"  r="4.5"/>
+      <circle cx="255" cy="205" r="4.5"/>
+      <circle cx="150" cy="265" r="4.5"/>
+      <circle cx="55"  cy="205" r="4.5"/>
+      <circle cx="48"  cy="95"  r="4.5"/>
+    </g>
+    <!-- Skill labels -->
+    <g font-size="9" font-family="monospace" fill="#192840" opacity=".5" font-weight="600">
+      <text x="150" y="10"  text-anchor="middle">Excel / Sheets</text>
+      <text x="290" y="86"  text-anchor="start">Power BI</text>
+      <text x="290" y="214" text-anchor="start">SQL</text>
+      <text x="150" y="298" text-anchor="middle">Automation</text>
+      <text x="10"  y="214" text-anchor="end">Data QA</text>
+      <text x="10"  y="86"  text-anchor="end">Reporting</text>
+    </g>
+    <!-- Center label -->
+    <text x="150" y="147" font-size="7" font-family="monospace" fill="#2D7DD2" text-anchor="middle" opacity=".6">SKILL</text>
+    <text x="150" y="158" font-size="7" font-family="monospace" fill="#2D7DD2" text-anchor="middle" opacity=".6">RADAR</text>
+  </svg>
+</div>
+  <div class="section-inner">
+    <p class="eyebrow fu">Skills &amp; Tools</p>
+    <h2 class="sh fu d1">The toolkit behind the results</h2>
+    <div class="skills-grid">
+      <div>
+        <div class="sg-label">Analytics &amp; Reporting</div>
+        <div class="sk-row fu"><div class="sk-top"><span class="sk-name">Microsoft Excel: Pivot Tables, Power Query, Advanced Formulas</span><span class="sk-lv">Expert</span></div><div class="sk-track"><div class="sk-fill" style="width:95%"></div></div></div>
+        <div class="sk-row fu d1"><div class="sk-top"><span class="sk-name">Google Sheets: QUERY, ARRAYFORMULA, XLOOKUP, IMPORTRANGE</span><span class="sk-lv">Expert</span></div><div class="sk-track"><div class="sk-fill" style="width:92%"></div></div></div>
+        <div class="sk-row fu d2"><div class="sk-top"><span class="sk-name">Power BI: Dashboard Development &amp; Data Visualization</span><span class="sk-lv">Advanced</span></div><div class="sk-track"><div class="sk-fill" style="width:84%"></div></div></div>
+        <div class="sk-row fu d3"><div class="sk-top"><span class="sk-name">SQL: Data Querying &amp; Extraction</span><span class="sk-lv">Proficient</span></div><div class="sk-track"><div class="sk-fill" style="width:78%"></div></div></div>
+        <div style="margin-top:2.25rem">
+          <div class="sg-label">Automation &amp; Engineering</div>
+          <div class="sk-row fu"><div class="sk-top"><span class="sk-name">Google Apps Script / JavaScript Automation</span><span class="sk-lv">Advanced</span></div><div class="sk-track"><div class="sk-fill" style="width:85%"></div></div></div>
+          <div class="sk-row fu d1"><div class="sk-top"><span class="sk-name">Reporting Pipeline Design &amp; Automation</span><span class="sk-lv">Advanced</span></div><div class="sk-track"><div class="sk-fill" style="width:90%"></div></div></div>
+          <div class="sk-row fu d2"><div class="sk-top"><span class="sk-name">Data Cleaning, Validation &amp; Governance</span><span class="sk-lv">Expert</span></div><div class="sk-track"><div class="sk-fill" style="width:93%"></div></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="sg-label">Full Tool Stack</div>
+        <div class="tools-wrap fu">
+          <span class="tc">Microsoft Excel</span><span class="tc">Power BI</span><span class="tc">Google Sheets</span><span class="tc">Google Apps Script</span><span class="tc">JavaScript</span><span class="tc">SQL</span><span class="tc">Power Query</span><span class="tc">QUERY Function</span><span class="tc">ARRAYFORMULA</span><span class="tc">XLOOKUP</span><span class="tc">IMPORTRANGE</span><span class="tc">Pivot Tables</span><span class="tc">PowerPoint</span><span class="tc">Google Slides</span><span class="tc">Microsoft Forms</span><span class="tc">Data Validation</span><span class="tc">Deduplication Logic</span><span class="tc">Forecasting Models</span><span class="tc">KPI Dashboards</span><span class="tc">SLA Reporting</span><span class="tc">WFM Metrics</span><span class="tc">NPS / CSAT / FCR</span><span class="tc">MBR / WBR Reports</span><span class="tc">Incentive Reporting</span><span class="tc">Shrinkage Tracking</span><span class="tc">Outlier Analysis</span><span class="tc">Process Documentation</span>
+        </div>
+        <div style="margin-top:2.25rem">
+          <div class="sg-label">Domain Experience</div>
+          <div class="tools-wrap fu">
+            <span class="tc">BPO / Contact Center</span><span class="tc">Healthcare-Adjacent</span><span class="tc">Dental Practice Analytics</span><span class="tc">Remote Operations</span><span class="tc">Workforce Management</span><span class="tc">Client-Facing Reporting</span><span class="tc">Revenue Forecasting</span><span class="tc">Agent Performance</span><span class="tc">Cross-Functional Teams</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="exp-section" id="experience">
+<div class="sec-bg" aria-hidden="true"><svg viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gantt chart rows bottom -->
+  <g opacity="0.045">
+    <rect x="200" y="760" width="420" height="20" rx="4" fill="#2D7DD2"/>
+    <rect x="200" y="792" width="320" height="20" rx="4" fill="#5BA3F5"/>
+    <rect x="380" y="824" width="260" height="20" rx="4" fill="#2D7DD2"/>
+    <rect x="500" y="856" width="180" height="20" rx="4" fill="#5BA3F5"/>
+    <rect x="580" y="888" width="100" height="20" rx="4" fill="#E9A015"/>
+    <!-- Year marks -->
+    <line x1="200" y1="748" x2="200" y2="915" stroke="#2D7DD2" stroke-width="1"/>
+    <line x1="340" y1="748" x2="340" y2="915" stroke="#2D7DD2" stroke-width="0.5"/>
+    <line x1="480" y1="748" x2="480" y2="915" stroke="#2D7DD2" stroke-width="0.5"/>
+    <line x1="620" y1="748" x2="620" y2="915" stroke="#2D7DD2" stroke-width="0.5"/>
+    <line x1="760" y1="748" x2="760" y2="915" stroke="#2D7DD2" stroke-width="1"/>
+  </g>
+  <!-- Year labels -->
+  <g font-family="'Courier New',monospace" font-size="11" fill="rgba(45,125,210,0.07)" text-anchor="middle">
+    <text x="200" y="742">2002</text><text x="340" y="742">2007</text>
+    <text x="480" y="742">2010</text><text x="620" y="742">2021</text>
+    <text x="760" y="742">2025</text>
+  </g>
+  <!-- Calendar grid top-right -->
+  <g opacity="0.04" fill="none" stroke="#2D7DD2" stroke-width="1">
+    <rect x="980" y="60" width="380" height="280" rx="6"/>
+    <!-- grid cells 7x4 -->
+    <line x1="980" y1="120" x2="1360" y2="120"/><line x1="980" y1="180" x2="1360" y2="180"/>
+    <line x1="980" y1="240" x2="1360" y2="240"/><line x1="980" y1="300" x2="1360" y2="300"/>
+    <line x1="1034" y1="60" x2="1034" y2="340"/><line x1="1088" y1="60" x2="1088" y2="340"/>
+    <line x1="1142" y1="60" x2="1142" y2="340"/><line x1="1196" y1="60" x2="1196" y2="340"/>
+    <line x1="1250" y1="60" x2="1250" y2="340"/><line x1="1304" y1="60" x2="1304" y2="340"/>
+    <!-- header fill -->
+    <rect x="980" y="60" width="380" height="60" rx="4" fill="#2D7DD2" opacity="0.3"/>
+    <!-- highlighted cells -->
+    <rect x="1088" y="180" width="54" height="60" fill="#E9A015" opacity="0.25"/>
+    <rect x="1196" y="240" width="54" height="60" fill="#2D7DD2" opacity="0.25"/>
+    <rect x="1034" y="300" width="54" height="40" fill="#5BA3F5" opacity="0.25"/>
+  </g>
+  <!-- Network nodes right-center -->
+  <g opacity="0.05">
+    <circle cx="1200" cy="500" r="8" fill="#2D7DD2"/>
+    <circle cx="1280" cy="450" r="6" fill="#2D7DD2"/>
+    <circle cx="1320" cy="540" r="8" fill="#2D7DD2"/>
+    <circle cx="1240" cy="580" r="5" fill="#5BA3F5"/>
+    <circle cx="1160" cy="560" r="7" fill="#2D7DD2"/>
+    <circle cx="1140" cy="470" r="5" fill="#5BA3F5"/>
+    <line x1="1200" y1="500" x2="1280" y2="450" stroke="#2D7DD2" stroke-width="1.5"/>
+    <line x1="1200" y1="500" x2="1320" y2="540" stroke="#2D7DD2" stroke-width="1.5"/>
+    <line x1="1200" y1="500" x2="1240" y2="580" stroke="#2D7DD2" stroke-width="1.5"/>
+    <line x1="1200" y1="500" x2="1160" y2="560" stroke="#2D7DD2" stroke-width="1.5"/>
+    <line x1="1200" y1="500" x2="1140" y2="470" stroke="#2D7DD2" stroke-width="1.5"/>
+    <line x1="1280" y1="450" x2="1320" y2="540" stroke="#5BA3F5" stroke-width="1"/>
+    <line x1="1160" y1="560" x2="1240" y2="580" stroke="#5BA3F5" stroke-width="1"/>
+  </g>
+</svg></div>
+<div class="sd" style="opacity:.05">
+  <svg viewBox="0 0 440 360" style="position:absolute;top:50%;right:-10px;transform:translateY(-50%);width:min(36%,380px);height:auto" xmlns="http://www.w3.org/2000/svg">
+    <text x="240" y="16" font-size="10" font-family="monospace" fill="#192840" text-anchor="middle" font-weight="700">Career Timeline</text>
+    <!-- Y-axis -->
+    <line x1="90" y1="22" x2="90" y2="335" stroke="#192840" stroke-width=".8" opacity=".35"/>
+    <!-- Year markers across top -->
+    <g font-size="7" font-family="monospace" fill="#192840" opacity=".4" text-anchor="middle">
+      <text x="95"  y="32">2002</text>
+      <text x="138" y="32">2005</text>
+      <text x="180" y="32">2008</text>
+      <text x="222" y="32">2011</text>
+      <text x="265" y="32">2014</text>
+      <text x="308" y="32">2017</text>
+      <text x="350" y="32">2020</text>
+      <text x="393" y="32">2023</text>
+      <text x="430" y="32">now</text>
+    </g>
+    <!-- Vertical guide lines -->
+    <g stroke="#192840" stroke-width=".5" stroke-dasharray="2,5" opacity=".2">
+      <line x1="138" y1="36" x2="138" y2="335"/>
+      <line x1="180" y1="36" x2="180" y2="335"/>
+      <line x1="222" y1="36" x2="222" y2="335"/>
+      <line x1="265" y1="36" x2="265" y2="335"/>
+      <line x1="308" y1="36" x2="308" y2="335"/>
+      <line x1="350" y1="36" x2="350" y2="335"/>
+      <line x1="393" y1="36" x2="393" y2="335"/>
+    </g>
+    <!-- Gantt bars  (x=start, width=duration, each year~14.3px) -->
+    <!-- CSR 2002-2003 -->
+    <rect x="95"  y="52"  width="14" height="20" rx="3" fill="#6B7F9E" opacity=".6"/>
+    <text x="86"  y="66" font-size="8" font-family="monospace" fill="#192840" text-anchor="end">CSR</text>
+    <!-- SME 2003-2004 -->
+    <rect x="109" y="82"  width="20" height="20" rx="3" fill="#6B7F9E" opacity=".6"/>
+    <text x="86"  y="96" font-size="8" font-family="monospace" fill="#192840" text-anchor="end">SME</text>
+    <!-- TL 2005-2007 -->
+    <rect x="138" y="112" width="28" height="20" rx="3" fill="#5BA3F5" opacity=".6"/>
+    <text x="86"  y="126" font-size="8" font-family="monospace" fill="#192840" text-anchor="end">Team Lead</text>
+    <!-- Asst Mgr IBM 2007-2010 -->
+    <rect x="166" y="142" width="43" height="20" rx="3" fill="#5BA3F5" opacity=".6"/>
+    <text x="86"  y="156" font-size="8" font-family="monospace" fill="#192840" text-anchor="end">Asst Mgr</text>
+    <!-- Ops Mgr 2010-2020 -->
+    <rect x="209" y="172" width="143" height="20" rx="3" fill="#2D7DD2" opacity=".7"/>
+    <text x="86"  y="186" font-size="8" font-family="monospace" fill="#192840" text-anchor="end">Ops Manager</text>
+    <!-- Reporting Analyst 2021-2025 -->
+    <rect x="352" y="202" width="58" height="20" rx="3" fill="#E9A015" opacity=".7"/>
+    <text x="86"  y="216" font-size="8" font-family="monospace" fill="#192840" text-anchor="end">Report Analyst</text>
+    <!-- DA NYFD 2025-now -->
+    <rect x="407" y="232" width="25" height="20" rx="3" fill="#16A34A" opacity=".7"/>
+    <text x="86"  y="246" font-size="8" font-family="monospace" fill="#192840" text-anchor="end">Data Analyst</text>
+    <!-- Legend -->
+    <g font-size="7" font-family="monospace" fill="#192840" opacity=".45">
+      <rect x="95"  y="285" width="10" height="8" rx="2" fill="#6B7F9E" opacity=".7"/><text x="108" y="293">Early Career</text>
+      <rect x="175" y="285" width="10" height="8" rx="2" fill="#5BA3F5" opacity=".7"/><text x="188" y="293">Mid-Level</text>
+      <rect x="245" y="285" width="10" height="8" rx="2" fill="#2D7DD2" opacity=".7"/><text x="258" y="293">Management</text>
+      <rect x="330" y="285" width="10" height="8" rx="2" fill="#E9A015" opacity=".7"/><text x="343" y="293">Analytics</text>
+    </g>
+  </svg>
+</div>
+  <div class="section-inner">
+    <div class="exp-layout">
+      <div class="exp-sticky fu">
+        <p class="eyebrow">Experience</p>
+        <h2 class="sh" style="font-size:1.9rem">20+ years building and improving operations</h2>
+        <p class="sl" style="margin-bottom:0;font-size:.9rem">From frontline CSR to Operations Manager, then a deliberate pivot to full-time analytics.</p>
+        <div class="exp-stats">
+          <div class="exp-stat-box"><div class="esb-val"><span class="a">5+</span></div><div class="esb-lbl">Years Analytics</div></div>
+          <div class="exp-stat-box"><div class="esb-val"><span class="a">10+</span></div><div class="esb-lbl">Years Leading Teams</div></div>
+          <div class="exp-stat-box"><div class="esb-val"><span class="a">3</span></div><div class="esb-lbl">Companies</div></div>
+          <div class="exp-stat-box"><div class="esb-val"><span class="a">3</span></div><div class="esb-lbl">Industries</div></div>
+        </div>
+      </div>
+      <div class="tl">
+        <div class="tl-row fu">
+          <div class="tl-dot gd"></div>
+          <div class="tl-period">June 2025 – Present</div>
+          <div class="tl-role">Cross-Functional Operations Data Analyst</div>
+          <div class="tl-org">New York Family Dentistry · Remote, Philippines</div>
+          <p class="tl-body">Building automated reporting pipelines with event-driven updates using Google Sheets and Apps Script. Designed integrated multi-source dashboards and established a data governance framework covering validation rules, deduplication logic, and exception handling, built from the ground up. Also built the Power BI executive dashboards (Production, Collection, and Forecast Deep Dives) shown in the gallery above.</p>
+          <div class="tl-tags"><span class="tl-tag g">50% effort reduction</span><span class="tl-tag g">Live multi-source dashboards</span><span class="tl-tag g">Full data governance framework</span><span class="tl-tag g">Power BI executive dashboards</span></div>
+        </div>
+        <div class="tl-row fu d1">
+          <div class="tl-dot"></div>
+          <div class="tl-period">January 2021 – January 2025</div>
+          <div class="tl-role">Reporting Analyst · Business &amp; Data Analyst</div>
+          <div class="tl-org">Concentrix · Quezon City, Philippines</div>
+          <p class="tl-body">Owned full daily, weekly, and monthly reporting cycles across multiple sites. Automated MBR/WBR trackers, coaching dashboards, shrinkage reports, and outlier analysis. Built an hourly agent behavior dashboard that shifted the site from reactive to proactive performance management. Managed incentive reporting for 1,000+ agents.</p>
+          <div class="tl-tags"><span class="tl-tag">40% manual time saved</span><span class="tl-tag">98% forecast accuracy</span><span class="tl-tag">+12% CSAT</span><span class="tl-tag">+10% FCR</span><span class="tl-tag">−20% AHT</span></div>
+        </div>
+        <div class="tl-row fu d2">
+          <div class="tl-dot"></div>
+          <div class="tl-period">June 2010 – December 2020</div>
+          <div class="tl-role">Operations Manager</div>
+          <div class="tl-org">Concentrix · Quezon City, Philippines</div>
+          <p class="tl-body">Led 5 supervisors, 5 SMEs, and 60 agents. Drove 15% improvement in employee engagement and 30% attrition reduction. The 10-year operations lens now shapes every reporting system I design. I know what the end-reader needs, because I was them.</p>
+          <div class="tl-tags"><span class="tl-tag">30% attrition reduction</span><span class="tl-tag">25% operational efficiency gain</span><span class="tl-tag">95–100% SLA adherence</span></div>
+        </div>
+        <div class="tl-row fu d3">
+          <div class="tl-dot"></div>
+          <div class="tl-period">July 2007 – June 2010</div>
+          <div class="tl-role">Assistant Manager</div>
+          <div class="tl-org">IBM · Quezon City, Philippines</div>
+          <p class="tl-body">Managed multi-campaign daily operations. Designed and executed process improvement strategies, reducing TAT by 18%. Collaborated directly with data analysts to enhance reporting accuracy, the partnership that seeded a full pivot into analytics years later.</p>
+          <div class="tl-tags"><span class="tl-tag">18% TAT reduction</span><span class="tl-tag">+15% FCR via coaching</span></div>
+        </div>
+        <div class="tl-row fu d4">
+          <div class="tl-dot"></div>
+          <div class="tl-period">June 2002 – June 2007</div>
+          <div class="tl-role">Team Leader → SME → CSR / Technical Support</div>
+          <div class="tl-org">IBM · Quezon City, Philippines</div>
+          <p class="tl-body">Built from frontline customer support through Subject Matter Expert and Team Leader roles. Designed training programs, conducted QA audits, and coached teams. The foundation everything else was built on.</p>
+          <div class="tl-tags"><span class="tl-tag">+12% CSAT as TL</span><span class="tl-tag">+15% productivity via training</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY ME -->
+<section class="why-section">
+<div class="sec-bg" aria-hidden="true"><svg viewBox="0 0 1400 280" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <!-- Large network graph spanning full width -->
+  <g opacity="0.05">
+    <!-- nodes -->
+    <circle cx="100" cy="140" r="10" fill="#2D7DD2"/>
+    <circle cx="250" cy="80" r="7" fill="#5BA3F5"/>
+    <circle cx="250" cy="200" r="8" fill="#2D7DD2"/>
+    <circle cx="420" cy="120" r="9" fill="#2D7DD2"/>
+    <circle cx="420" cy="200" r="6" fill="#5BA3F5"/>
+    <circle cx="600" cy="90" r="8" fill="#E9A015"/>
+    <circle cx="600" cy="180" r="7" fill="#2D7DD2"/>
+    <circle cx="780" cy="140" r="10" fill="#2D7DD2"/>
+    <circle cx="950" cy="80" r="7" fill="#5BA3F5"/>
+    <circle cx="950" cy="200" r="8" fill="#2D7DD2"/>
+    <circle cx="1100" cy="130" r="9" fill="#2D7DD2"/>
+    <circle cx="1280" cy="100" r="7" fill="#5BA3F5"/>
+    <circle cx="1280" cy="190" r="8" fill="#2D7DD2"/>
+    <!-- edges -->
+    <line x1="100" y1="140" x2="250" y2="80" stroke="#2D7DD2" stroke-width="1.5"/>
+    <line x1="100" y1="140" x2="250" y2="200" stroke="#2D7DD2" stroke-width="1.5"/>
+    <line x1="250" y1="80" x2="420" y2="120" stroke="#5BA3F5" stroke-width="1"/>
+    <line x1="250" y1="200" x2="420" y2="200" stroke="#5BA3F5" stroke-width="1"/>
+    <line x1="420" y1="120" x2="600" y2="90" stroke="#2D7DD2" stroke-width="1.5"/>
+    <line x1="420" y1="120" x2="600" y2="180" stroke="#2D7DD2" stroke-width="1"/>
+    <line x1="420" y1="200" x2="600" y2="180" stroke="#5BA3F5" stroke-width="1"/>
+    <line x1="600" y1="90" x2="780" y2="140" stroke="#2D7DD2" stroke-width="1.5"/>
+    <line x1="600" y1="180" x2="780" y2="140" stroke="#2D7DD2" stroke-width="1.5"/>
+    <line x1="780" y1="140" x2="950" y2="80" stroke="#2D7DD2" stroke-width="1.5"/>
+    <line x1="780" y1="140" x2="950" y2="200" stroke="#2D7DD2" stroke-width="1.5"/>
+    <line x1="950" y1="80" x2="1100" y2="130" stroke="#5BA3F5" stroke-width="1"/>
+    <line x1="950" y1="200" x2="1100" y2="130" stroke="#5BA3F5" stroke-width="1"/>
+    <line x1="1100" y1="130" x2="1280" y2="100" stroke="#2D7DD2" stroke-width="1.5"/>
+    <line x1="1100" y1="130" x2="1280" y2="190" stroke="#2D7DD2" stroke-width="1.5"/>
+  </g>
+</svg></div>
+<div class="sd" style="opacity:.05">
+  <svg viewBox="0 0 600 200" style="position:absolute;inset:0;width:100%;height:100%" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+    <!-- Network edges -->
+    <g stroke="#2D7DD2" stroke-width="1" opacity=".6">
+      <line x1="300" y1="100" x2="150" y2="55"/>
+      <line x1="300" y1="100" x2="450" y2="55"/>
+      <line x1="300" y1="100" x2="80"  y2="130"/>
+      <line x1="300" y1="100" x2="520" y2="130"/>
+      <line x1="300" y1="100" x2="180" y2="165"/>
+      <line x1="300" y1="100" x2="420" y2="165"/>
+      <line x1="150" y1="55"  x2="80"  y2="130"/>
+      <line x1="450" y1="55"  x2="520" y2="130"/>
+      <line x1="180" y1="165" x2="80"  y2="130"/>
+      <line x1="420" y1="165" x2="520" y2="130"/>
+      <line x1="60"  y1="55"  x2="150" y2="55"/>
+      <line x1="540" y1="55"  x2="450" y2="55"/>
+      <line x1="60"  y1="55"  x2="80"  y2="130"/>
+      <line x1="540" y1="55"  x2="520" y2="130"/>
+    </g>
+    <!-- Node labels (small) -->
+    <g font-size="7" font-family="monospace" fill="#192840" opacity=".45" text-anchor="middle">
+      <text x="300" y="104">Analytics</text>
+      <text x="150" y="52">Power BI</text>
+      <text x="450" y="52">Google Sheets</text>
+      <text x="80"  y="127">SQL</text>
+      <text x="520" y="127">Apps Script</text>
+      <text x="180" y="162">Reporting</text>
+      <text x="420" y="162">Automation</text>
+      <text x="60"  y="52">Excel</text>
+      <text x="540" y="52">Forecasting</text>
+    </g>
+    <!-- Nodes -->
+    <g fill="#2D7DD2">
+      <circle cx="300" cy="100" r="14" opacity=".35"/>
+      <circle cx="150" cy="55"  r="9" opacity=".3"/>
+      <circle cx="450" cy="55"  r="9" opacity=".3"/>
+      <circle cx="80"  cy="130" r="8" opacity=".28"/>
+      <circle cx="520" cy="130" r="8" opacity=".28"/>
+      <circle cx="180" cy="165" r="8" opacity=".28"/>
+      <circle cx="420" cy="165" r="8" opacity=".28"/>
+      <circle cx="60"  cy="55"  r="7" opacity=".25"/>
+      <circle cx="540" cy="55"  r="7" opacity=".25"/>
+    </g>
+  </svg>
+</div>
+  <div class="why-grid">
+    <div class="why-card fu"><div class="why-ico">🔬</div><div class="why-h">Ops floor to analytics desk, intentionally</div><p class="why-p">Ten years managing 60+ person teams before moving into full-time analytics. The reporting I build reflects what ops leaders actually need, because I was once the person asking for it.</p></div>
+    <div class="why-card fu d1"><div class="why-ico">🌐</div><div class="why-h">Remote-native, async-ready</div><p class="why-p">All recent experience in fully remote, cross-timezone environments. Structured communication, self-directed delivery, and documentation that doesn't require a 3-hour handover call to understand.</p></div>
+    <div class="why-card fu d2"><div class="why-ico">⚡</div><div class="why-h">Built to last, not just to ship</div><p class="why-p">Validation logic baked in. Deduplication handled structurally. Reports the next person can own. If I build it, it doesn't fall apart the week after I'm done.</p></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+<div class="sec-bg" aria-hidden="true"><svg viewBox="0 0 1400 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <!-- Scatter plot with trend line -->
+  <g opacity="0.07">
+    <circle cx="200" cy="480" r="5" fill="#5BA3F5"/>
+    <circle cx="260" cy="440" r="6" fill="#5BA3F5"/>
+    <circle cx="320" cy="455" r="4" fill="#5BA3F5"/>
+    <circle cx="370" cy="410" r="7" fill="#5BA3F5"/>
+    <circle cx="430" cy="420" r="5" fill="#5BA3F5"/>
+    <circle cx="490" cy="380" r="6" fill="#E9A015"/>
+    <circle cx="550" cy="370" r="4" fill="#5BA3F5"/>
+    <circle cx="610" cy="340" r="7" fill="#5BA3F5"/>
+    <circle cx="660" cy="355" r="5" fill="#5BA3F5"/>
+    <circle cx="720" cy="310" r="6" fill="#E9A015"/>
+    <circle cx="780" cy="300" r="4" fill="#5BA3F5"/>
+    <circle cx="840" cy="270" r="7" fill="#5BA3F5"/>
+    <!-- Trend line -->
+    <line x1="180" y1="495" x2="870" y2="255" stroke="#E9A015" stroke-width="1.5" stroke-dasharray="8 5" opacity="0.6"/>
+  </g>
+  <!-- Globe dot world map outline (right) -->
+  <g opacity="0.06" fill="rgba(255,255,255,0.9)">
+    <!-- simplified continent dots -->
+    <circle cx="1000" cy="280" r="3"/><circle cx="1015" cy="270" r="2"/><circle cx="1025" cy="285" r="3"/>
+    <circle cx="1040" cy="275" r="2"/><circle cx="1010" cy="300" r="3"/><circle cx="1030" cy="310" r="2"/>
+    <circle cx="1050" cy="265" r="3"/><circle cx="1065" cy="280" r="2"/><circle cx="1075" cy="295" r="3"/>
+    <circle cx="1080" cy="270" r="2"/><circle cx="1090" cy="285" r="3"/><circle cx="1100" cy="275" r="2"/>
+    <circle cx="1105" cy="300" r="3"/><circle cx="1115" cy="265" r="2"/><circle cx="1120" cy="285" r="3"/>
+    <circle cx="1130" cy="310" r="2"/><circle cx="1145" cy="280" r="3"/><circle cx="1155" cy="295" r="2"/>
+    <circle cx="1080" cy="330" r="3"/><circle cx="1100" cy="345" r="2"/><circle cx="1115" cy="335" r="3"/>
+    <circle cx="1130" cy="350" r="2"/><circle cx="1095" cy="360" r="3"/>
+    <!-- globe outline -->
+    <circle cx="1080" cy="310" r="80" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+    <ellipse cx="1080" cy="310" rx="45" ry="80" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+    <line x1="1000" y1="310" x2="1160" y2="310" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+    <line x1="1080" y1="230" x2="1080" y2="390" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  </g>
+  <!-- Pulse/signal lines -->
+  <g opacity="0.06" fill="none" stroke="rgba(233,160,21,1)" stroke-width="1.5">
+    <polyline points="900,500 940,500 950,470 960,530 970,480 980,520 990,500 1000,500"/>
+    <polyline points="1100,560 1140,560 1150,530 1160,590 1170,540 1180,580 1190,560 1200,560"/>
+  </g>
+  <!-- Data label hints -->
+  <g font-family="'Courier New',monospace" font-size="12" fill="rgba(255,255,255,0.065)">
+    <text x="60" y="620">fcr_rate: 0.82   csat_avg: 4.6   aht_mins: 5.2</text>
+    <text x="60" y="648">accuracy: 99.1%   coverage: 1,247 agents   sla: 100%</text>
+    <text x="60" y="676">forecast_accuracy: 98.0%   delta: +0.02   trend: ↑</text>
+  </g>
+  <!-- Axis lines for scatter -->
+  <line x1="175" y1="200" x2="175" y2="520" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+  <line x1="175" y1="520" x2="900" y2="520" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+</svg></div>
+<div class="sd" style="opacity:.065">
+  <svg viewBox="0 0 320 280" style="position:absolute;bottom:-10px;right:-10px;width:min(30%,300px);height:auto" xmlns="http://www.w3.org/2000/svg">
+    <text x="160" y="16" font-size="9" font-family="monospace" fill="white" text-anchor="middle" opacity=".6">Analytics Impact Over Time</text>
+    <!-- Axes -->
+    <line x1="35" y1="20"  x2="35"  y2="230" stroke="white" stroke-width=".8" opacity=".35"/>
+    <line x1="35" y1="230" x2="315" y2="230" stroke="white" stroke-width=".8" opacity=".35"/>
+    <!-- Grid lines -->
+    <g stroke="white" stroke-width=".6" stroke-dasharray="3,7" opacity=".2">
+      <line x1="35" y1="55"  x2="315" y2="55"/>
+      <line x1="35" y1="90"  x2="315" y2="90"/>
+      <line x1="35" y1="125" x2="315" y2="125"/>
+      <line x1="35" y1="160" x2="315" y2="160"/>
+      <line x1="35" y1="195" x2="315" y2="195"/>
+    </g>
+    <!-- Rising bars (monthly performance) -->
+    <rect x="43"  y="195" width="22" height="35" rx="3" fill="white" opacity=".25"/>
+    <rect x="72"  y="185" width="22" height="45" rx="3" fill="white" opacity=".25"/>
+    <rect x="101" y="172" width="22" height="58" rx="3" fill="white" opacity=".28"/>
+    <rect x="130" y="155" width="22" height="75" rx="3" fill="white" opacity=".3"/>
+    <rect x="159" y="140" width="22" height="90" rx="3" fill="white" opacity=".32"/>
+    <rect x="188" y="118" width="22" height="112" rx="3" fill="white" opacity=".35"/>
+    <rect x="217" y="95"  width="22" height="135" rx="3" fill="white" opacity=".38"/>
+    <rect x="246" y="72"  width="22" height="158" rx="3" fill="#E9A015" opacity=".5"/>
+    <rect x="275" y="48"  width="22" height="182" rx="3" fill="#E9A015" opacity=".55"/>
+    <!-- Trend line overlay -->
+    <polyline points="54,192 83,182 112,168 141,152 170,136 199,114 228,90 257,68 286,44"
+      fill="none" stroke="white" stroke-width="2" stroke-linejoin="round" opacity=".55"/>
+    <!-- Data labels on last 2 bars -->
+    <text x="257" y="65"  font-size="8" font-family="monospace" fill="white" text-anchor="middle" opacity=".65">+40%</text>
+    <text x="286" y="42"  font-size="8" font-family="monospace" fill="#E9A015" text-anchor="middle" opacity=".8">+50%</text>
+    <!-- Y axis labels -->
+    <g font-size="7" font-family="monospace" fill="white" opacity=".4" text-anchor="end">
+      <text x="30" y="58">100%</text>
+      <text x="30" y="93">80%</text>
+      <text x="30" y="128">60%</text>
+      <text x="30" y="163">40%</text>
+      <text x="30" y="198">20%</text>
+    </g>
+    <!-- X labels -->
+    <g font-size="6" font-family="monospace" fill="white" opacity=".35" text-anchor="middle">
+      <text x="54"  y="244">Jan</text>
+      <text x="112" y="244">Mar</text>
+      <text x="170" y="244">May</text>
+      <text x="228" y="244">Jul</text>
+      <text x="286" y="244">Sep</text>
+    </g>
+    <text x="175" y="260" font-size="7" font-family="monospace" fill="white" text-anchor="middle" opacity=".3">Efficiency Improvement</text>
+  </svg>
+</div>
+  <div class="section-inner">
+    <p class="eyebrow fu">Let's Work Together</p>
+    <h2 class="sh fu d1" style="color:#fff">Ready to bring clarity<br><em style="font-style:italic;color:var(--gold)">to your data?</em></h2>
+    <p class="contact-pitch fu d2">Whether you need a reporting system built from scratch, an existing process automated, or a Power BI dashboard that leadership will actually open. Let's schedule a quick Google Meet and talk it through.</p>
+    <div class="contact-btns fu d3">
+      <a href="https://calendar.google.com/calendar/r/eventedit?add=chris.canilao23%40gmail.com&text=Meeting%20with%20Christian%20Canilao&details=Hi%20Christian%2C%20I%27d%20like%20to%20connect%20via%20Google%20Meet." target="_blank" rel="noopener" class="btn-primary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Schedule a Google Meet
+      </a>
+      <a href="mailto:chris.canilao23@gmail.com?subject=Let%27s%20Connect%20%E2%80%94%20Reporting%20Analyst%20Opportunity" class="btn-secondary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        chris.canilao23@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/chris-canilao/" target="_blank" rel="noopener" class="btn-secondary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn Profile
+      </a>
+    </div>
+    <div class="contact-meta fu d4">
+      <div class="cm-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+        PHT (UTC+8) · Flexible for EST / PST overlap
+      </div>
+      <div class="cm-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        Open to Full-Time Remote Roles
+      </div>
+      <div class="cm-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 10.9 19.79 19.79 0 0 1 1.62 2.28 2 2 0 0 1 3.6.1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 7.91a16 16 0 0 0 6.16 6.16l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        +63 919-008-9723
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Christian Canilao · Data &amp; Reporting Analyst · Portfolio 2025 &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/chris-canilao/" target="_blank" rel="noopener">LinkedIn</a></p>
+</footer>
+
 <script>
-function showDash(btn, panelId) {
-  // Hide all panels
-  const panels = document.querySelectorAll('.dash-panel');
-  panels.forEach(p => p.classList.remove('show'));
-  
-  // Remove active class from all tabs
-  const tabs = document.querySelectorAll('.dash-tab');
-  tabs.forEach(t => t.classList.remove('active'));
-  
-  // Show selected panel
-  document.getElementById(panelId).classList.add('show');
-  btn.classList.add('active');
-}
+  /* Scroll progress */
+  const prog=document.getElementById('prog');
+  window.addEventListener('scroll',()=>{
+    const s=window.scrollY,t=document.documentElement.scrollHeight-window.innerHeight;
+    prog.style.width=(s/t*100)+'%';
+  },{passive:true});
 
-// Intersection Observer for fade-in animations
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in');
-    }
-  });
-}, { threshold: 0.1 });
+  /* KPI counters */
+  function ease(t){return 1-Math.pow(1-t,3)}
+  function countUp(el,target,dur){
+    const t0=performance.now();
+    (function tick(now){
+      const p=Math.min((now-t0)/dur,1),v=Math.round(ease(p)*target);
+      el.textContent=v>=1000?v.toLocaleString():v;
+      if(p<1)requestAnimationFrame(tick);
+    })(performance.now());
+  }
+  const kpiCards=document.querySelectorAll('.kpi-card');
+  let kpiFired=false;
+  function fireKPIs(){
+    if(kpiFired)return;kpiFired=true;
+    kpiCards.forEach((c,i)=>setTimeout(()=>{
+      c.classList.add('lit');
+      countUp(c.querySelector('.kpi-counter'),+c.dataset.end,1500);
+    },i*130));
+  }
+  window.addEventListener('load',()=>setTimeout(fireKPIs,400));
 
-document.querySelectorAll('.fu').forEach(el => observer.observe(el));
+  /* Dot-grid canvas */
+  const canvas=document.getElementById('dotCanvas'),ctx=canvas.getContext('2d');
+  let dots=[],W,H;
+  const GAP=44,R=1.2,SPD=0.18;
+  function buildDots(){dots=[];for(let x=0;x<W;x+=GAP)for(let y=0;y<H;y+=GAP)dots.push({x,y,phase:Math.random()*Math.PI*2})}
+  function resize(){W=canvas.offsetWidth;H=canvas.offsetHeight;canvas.width=W;canvas.height=H;buildDots()}
+  function draw(t){
+    ctx.clearRect(0,0,W,H);
+    dots.forEach(d=>{
+      const a=0.06+0.06*Math.sin(t*SPD+d.phase);
+      ctx.beginPath();ctx.arc(d.x,d.y,R,0,Math.PI*2);
+      ctx.fillStyle=`rgba(45,125,210,${a})`;ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  resize();window.addEventListener('resize',resize);requestAnimationFrame(draw);
 
-// Scroll progress bar
-window.addEventListener('scroll', () => {
-  const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-  document.getElementById('prog').style.width = scrollPercentage + '%';
-});
+  /* Scroll-triggered animations */
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting)return;
+      const el=e.target;
+      if(el.classList.contains('fu'))el.classList.add('in');
+      if(el.classList.contains('sk-fill'))el.classList.add('go');
+      io.unobserve(el);
+    });
+  },{threshold:0.14});
+  document.querySelectorAll('.fu,.sk-fill').forEach(el=>io.observe(el));
+
+  /* Active nav */
+  const sections=document.querySelectorAll('section[id]');
+  const navAs=document.querySelectorAll('.nav-links a[href^="#"]');
+  const navIO=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting)navAs.forEach(a=>a.classList.toggle('active',a.getAttribute('href')===`#${e.target.id}`));
+    });
+  },{threshold:0.45});
+  sections.forEach(s=>navIO.observe(s));
+
+  /* Dashboard tab switcher */
+  function showDash(btn,panelId){
+    document.querySelectorAll('.dash-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.dash-panel').forEach(p=>p.classList.remove('show'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('show');
+  }
 </script>
 </body>
 </html>
